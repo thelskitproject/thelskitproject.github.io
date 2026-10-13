@@ -1,0 +1,12 @@
+.home {
+    background: #f7f9fc;
+    color: #183153;
+}
+:global(.dark) .home {
+    background: var(--background);
+    color: var(--foreground);
+}
+.heading {
+    font-family: inherit;
+    font-weight: 600;
+}

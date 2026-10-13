@@ -57,7 +57,7 @@ jobs:
         if: steps.detect-package-manager.outputs.manager == 'pnpm'
         uses: pnpm/action-setup@v4
         with:
-          version: 10
+          version: 11
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
@@ -83,6 +83,10 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
+        # Prepare the locally hosted QR reader before bypassing the package build script.
+        run: |
+          node scripts/prepare-qr-wasm.ts
+      - name: Export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

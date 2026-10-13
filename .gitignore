@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Generated from the pinned local ZXing dependency
+/public/wasm/zxing_reader.wasm
+
+# Independent lskit-data Git checkout
+/data/
+/.idea
+/.agents
