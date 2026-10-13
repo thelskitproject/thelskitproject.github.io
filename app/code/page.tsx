@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Card, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
     InputGroup,
     InputGroupAddon,
@@ -52,10 +53,18 @@ function CodeCard({ entry }: { entry: CheckinCode }) {
                                 )}
                             >
                                 <span className="line-clamp-2 text-sm font-semibold">
-                                    {formatRoomName(
-                                        entry.roomName,
-                                        entry.roomNumber,
-                                    )}
+                                    {entry.roomName || "教室"}
+                                </span>
+                                <span className="flex w-full items-center justify-between gap-2">
+                                    <span
+                                        className="min-w-0 truncate text-xs font-normal text-muted-foreground"
+                                        title={entry.buildingName}
+                                    >
+                                        {entry.buildingName}
+                                    </span>
+                                    <Badge variant="secondary">
+                                        {entry.roomNumber}
+                                    </Badge>
                                 </span>
                                 <span className="sr-only">查看二维码</span>
                             </Button>
