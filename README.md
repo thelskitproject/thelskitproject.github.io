@@ -45,7 +45,7 @@ pnpm test:qr
 ```
 
 macOS 上通过系统 sips 解码 HEIC/HEIF；其他图片支持 PNG、JPEG 等 Sharp 支持的格式，请使用只包含一个二维码的清晰图片。
-记录写入 `data/checkin-codes.json`；房间号按字符串保存，以保留前导零。Room Name 单独保存；未知时可省略 `--room-name`，记录为 null。命名参数顺序不限，重复或未知参数会报错。
+记录写入 `data/checkin-codes.json`；房间号按字符串保存，以保留前导零。Room Name 必填，照抄照片上的原文，不含房间号，不要缩写或翻译；已有 null 记录仍可读取。命名参数顺序不限，重复或未知参数会报错。
 相同教学楼和房间号不会自动覆盖。更新已有记录前请先核实数据。
 
 网页 `/code` 从数据仓库的 `checkin-codes.min.json` 读取最新记录，并用 Canvas 解包 Base64 二进制模块矩阵后绘制二维码，不重新编码数据。

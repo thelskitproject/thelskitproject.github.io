@@ -10,7 +10,6 @@ import {
 import Link from "next/link";
 import { QRCodeCanvas } from "@/components/qr-code-canvas";
 import { Label } from "@/components/ui/label";
-import { Badge } from "@/components/ui/badge";
 import {
     DropdownMenu,
     DropdownMenuTrigger,
@@ -31,7 +30,11 @@ import {
 } from "@/components/ui/dialog";
 import { IconChevronDown, IconSearch, IconBuilding } from "@tabler/icons-react";
 import { useCheckinCodes } from "@/lib/use-checkin-codes";
-import { matchesCheckinCode, type CheckinCode } from "@/lib/qr-code";
+import {
+    formatRoomName,
+    matchesCheckinCode,
+    type CheckinCode,
+} from "@/lib/qr-code";
 
 function CodeCard({ entry }: { entry: CheckinCode }) {
     return (
@@ -43,21 +46,16 @@ function CodeCard({ entry }: { entry: CheckinCode }) {
                             <Button
                                 variant="ghost"
                                 className="h-auto min-h-20 w-full flex-col items-stretch gap-2 whitespace-normal rounded-xl p-3 text-left"
-                                title={`${entry.buildingName} / ${entry.roomName ?? ""} / ${entry.roomNumber}`}
+                                title={formatRoomName(
+                                    entry.roomName,
+                                    entry.roomNumber,
+                                )}
                             >
-                                <span className="flex min-w-0 items-center justify-between gap-2">
-                                    <span className="truncate text-sm font-semibold">
-                                        {entry.roomName ?? "未命名教室"}
-                                    </span>
-                                    <Badge
-                                        variant="secondary"
-                                        className="shrink-0 text-xs"
-                                    >
-                                        {entry.roomNumber}
-                                    </Badge>
-                                </span>
-                                <span className="truncate text-xs font-normal text-muted-foreground">
-                                    {entry.buildingName}
+                                <span className="line-clamp-2 text-sm font-semibold">
+                                    {formatRoomName(
+                                        entry.roomName,
+                                        entry.roomNumber,
+                                    )}
                                 </span>
                                 <span className="sr-only">查看二维码</span>
                             </Button>
@@ -68,11 +66,9 @@ function CodeCard({ entry }: { entry: CheckinCode }) {
             <DialogContent className="max-h-[calc(100dvh-2rem)] overflow-y-auto">
                 <DialogHeader className="pr-8">
                     <DialogTitle className="text-xl">
-                        {entry.roomName ?? "未命名教室"}
+                        {formatRoomName(entry.roomName, entry.roomNumber)}
                     </DialogTitle>
-                    <DialogDescription>
-                        {entry.buildingName} / {entry.roomNumber}
-                    </DialogDescription>
+                    <DialogDescription>{entry.buildingName}</DialogDescription>
                 </DialogHeader>
                 <div className="min-w-0">
                     <QRCodeCanvas

@@ -1,14 +1,16 @@
-import { decodeMatrix, type CheckinCode } from "./qr-code.ts";
+import { decodeMatrix, formatRoomName, type CheckinCode } from "./qr-code.ts";
 
 export const classroomIssueURL =
     "https://github.com/thelskitproject/lskit-data/issues/new?template=add-classroom.yml";
 
 export function createClassroomIssueURL(value: unknown) {
     const record = validateClassroomSubmission(value);
+    if (!record.roomName)
+        throw new Error("请照抄照片上的房间名称，不含房间号。");
     const url = new URL(classroomIssueURL);
     url.searchParams.set(
         "title",
-        `[新增教室] ${record.buildingName}${record.roomName ? ` ${record.roomName}` : ""} (${record.roomNumber})`,
+        `[新增教室] ${formatRoomName(record.roomName, record.roomNumber)}`,
     );
     url.searchParams.set("record", JSON.stringify(record));
     return url.href;

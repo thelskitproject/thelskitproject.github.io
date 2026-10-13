@@ -33,6 +33,16 @@ import {
     ComboboxItem,
 } from "@/components/ui/combobox";
 import { QRCodeCanvas } from "@/components/qr-code-canvas";
+import { formatRoomName } from "@/lib/qr-code";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+    DialogFooter,
+    DialogClose,
+} from "@/components/ui/dialog";
 import { parseQRCodePhoto, selectQRCodePhoto } from "@/lib/parse-qr-photo";
 import { useCheckinCodes } from "@/lib/use-checkin-codes";
 import { createClassroomIssueURL } from "@/lib/classroom-submission";
@@ -49,37 +59,35 @@ export default function NewCodePage() {
     const [matrix, setMatrix] = useState<string | null>(null);
     const [busy, setBusy] = useState(false);
     const [error, setError] = useState("");
+    const [review, setReview] = useState<{
+        buildingName: string;
+        roomName: string;
+        roomNumber: string;
+        url: string;
+    } | null>(null);
+    const submitButton = useRef<HTMLButtonElement>(null);
     const attempt = useRef(0);
     const photoInput = useRef<HTMLInputElement>(null);
     const [dragging, setDragging] = useState(false);
     const dragDepth = useRef(0);
-    function selectPhotos(files: File[]) {
+    async function selectPhotos(files: File[]) {
         if (busy) return;
-        attempt.current++;
+        const current = ++attempt.current;
         setFile(null);
         setMatrix(null);
         setError("");
-        try {
-            setFile(selectQRCodePhoto(files));
-        } catch (error) {
-            setError(error instanceof Error ? error.message : "无法读取照片。");
-        }
-    }
-    async function parse() {
-        if (!file) return;
-        const current = ++attempt.current;
         setBusy(true);
-        setError("");
-        setMatrix(null);
         try {
-            const result = await parseQRCodePhoto(file);
+            const selected = selectQRCodePhoto(files);
+            setFile(selected);
+            const result = await parseQRCodePhoto(selected);
             if (attempt.current === current) setMatrix(result.matrix);
         } catch (error) {
             if (attempt.current === current)
                 setError(
                     error instanceof Error
                         ? error.message
-                        : "解析失败，请重试。",
+                        : "无法识别这张照片，请重试。",
                 );
         } finally {
             if (attempt.current === current) setBusy(false);
@@ -94,7 +102,12 @@ export default function NewCodePage() {
                 roomNumber,
                 matrix,
             });
-            window.location.assign(url);
+            setReview({
+                buildingName: buildingName.trim(),
+                roomName: roomName.trim(),
+                roomNumber: roomNumber.trim(),
+                url,
+            });
         } catch (error) {
             setError(
                 error instanceof Error
@@ -179,12 +192,21 @@ export default function NewCodePage() {
                                 <Label htmlFor="room-name">房间名称</Label>
                                 <Input
                                     id="room-name"
+                                    required
+                                    maxLength={200}
+                                    aria-describedby="room-name-help"
                                     value={roomName}
                                     onChange={(event) =>
                                         setRoomName(event.target.value)
                                     }
-                                    placeholder="例如 Edit 1 或 LT 02"
+                                    placeholder="照抄照片上的房间名称"
                                 />
+                                <p
+                                    id="room-name-help"
+                                    className="text-xs leading-6 text-muted-foreground"
+                                >
+                                    照抄照片上的文字，不含房间号；不要缩写或翻译。
+                                </p>
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="room-number">房间号</Label>
@@ -283,13 +305,20 @@ export default function NewCodePage() {
                                     role="status"
                                     className="flex min-w-0 items-start gap-3 rounded-lg bg-muted/50 p-3"
                                 >
-                                    <IconPhoto
-                                        className="mt-0.5 size-4 shrink-0 text-muted-foreground"
-                                        aria-hidden="true"
-                                    />
+                                    {busy ? (
+                                        <IconLoader2
+                                            className="mt-0.5 size-4 shrink-0 text-muted-foreground motion-safe:animate-spin"
+                                            aria-hidden="true"
+                                        />
+                                    ) : (
+                                        <IconPhoto
+                                            className="mt-0.5 size-4 shrink-0 text-muted-foreground"
+                                            aria-hidden="true"
+                                        />
+                                    )}
                                     <div className="min-w-0">
                                         <p className="text-xs text-muted-foreground">
-                                            已选择照片
+                                            {busy ? "正在识别…" : "已选择照片"}
                                         </p>
                                         <p
                                             title={file.name}
@@ -304,23 +333,7 @@ export default function NewCodePage() {
                                 支持 PNG、JPG、WebP，最大 20
                                 MB。请拍清完整二维码。
                             </p>
-                            <Button
-                                onClick={parse}
-                                disabled={!file || busy}
-                                className="w-full"
-                            >
-                                {busy ? (
-                                    <>
-                                        <IconLoader2
-                                            className="motion-safe:animate-spin"
-                                            aria-hidden="true"
-                                        />
-                                        正在识别…
-                                    </>
-                                ) : (
-                                    "识别二维码"
-                                )}
-                            </Button>
+
                             {error && (
                                 <p
                                     role="alert"
@@ -337,14 +350,9 @@ export default function NewCodePage() {
                         <CardTitle>
                             <h2>二维码预览</h2>
                         </CardTitle>
-                        {(buildingName.trim() ||
-                            roomName.trim() ||
-                            roomNumber.trim()) && (
+                        {(roomName.trim() || roomNumber.trim()) && (
                             <CardDescription>
-                                {[buildingName.trim(), roomName.trim()]
-                                    .filter(Boolean)
-                                    .join(" ")}
-                                {roomNumber.trim() && ` (${roomNumber.trim()})`}
+                                {formatRoomName(roomName, roomNumber)}
                             </CardDescription>
                         )}
                     </CardHeader>
@@ -373,7 +381,7 @@ export default function NewCodePage() {
                             >
                                 {busy
                                     ? "正在识别…"
-                                    : "选择照片后，点击识别二维码。"}
+                                    : "选择或拖入照片后，将自动识别二维码。"}
                             </div>
                         )}
                         <div className="text-xs leading-6 text-muted-foreground">
@@ -412,6 +420,7 @@ export default function NewCodePage() {
                             </p>
                         </div>
                         <Button
+                            ref={submitButton}
                             onClick={submit}
                             disabled={!matrix || busy}
                             className="w-full"
@@ -421,6 +430,72 @@ export default function NewCodePage() {
                     </CardContent>
                 </Card>
             </div>
+            <Dialog
+                open={review !== null}
+                onOpenChange={(open) => {
+                    if (!open) setReview(null);
+                }}
+            >
+                <DialogContent
+                    onCloseAutoFocus={(event) => {
+                        event.preventDefault();
+                        submitButton.current?.focus();
+                    }}
+                >
+                    <DialogHeader>
+                        <DialogTitle>这些信息都正确吗？</DialogTitle>
+                        <DialogDescription>
+                            请核对教学楼、房间名称和房间号是否正确。
+                        </DialogDescription>
+                    </DialogHeader>
+                    {review && (
+                        <dl className="space-y-4 text-sm">
+                            <div>
+                                <dt className="text-muted-foreground">
+                                    教学楼
+                                </dt>
+                                <dd className="mt-1 break-words font-medium">
+                                    {review.buildingName}
+                                </dd>
+                            </div>
+                            <div>
+                                <dt className="text-muted-foreground">
+                                    房间名称
+                                </dt>
+                                <dd className="mt-1 break-words font-medium">
+                                    {review.roomName}
+                                </dd>
+                            </div>
+                            <div>
+                                <dt className="text-muted-foreground">
+                                    房间号
+                                </dt>
+                                <dd className="mt-1 break-words font-medium">
+                                    {review.roomNumber}
+                                </dd>
+                            </div>
+                        </dl>
+                    )}
+                    <DialogFooter className="flex-col gap-2 sm:flex-col">
+                        <DialogClose asChild>
+                            <Button
+                                variant="outline"
+                                className="h-auto min-h-10 w-full whitespace-normal"
+                            >
+                                有点问题，修改信息
+                            </Button>
+                        </DialogClose>
+                        <Button
+                            className="h-auto min-h-10 w-full whitespace-normal"
+                            onClick={() => {
+                                if (review) window.location.assign(review.url);
+                            }}
+                        >
+                            都是对的，跳转GitHub添加二维码
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </main>
     );
 }

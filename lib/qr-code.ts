@@ -5,6 +5,10 @@ export type CheckinCode = {
     matrix: string;
 };
 
+export function formatRoomName(roomName: string | null, roomNumber: string) {
+    return `${roomName?.trim() || "教室"}${roomNumber.trim() ? ` (${roomNumber.trim()})` : ""}`;
+}
+
 // Row-major modules, most significant bit first; unused final bits are zero.
 export function encodeMatrix(rows: string[]) {
     const bits = rows.join("");

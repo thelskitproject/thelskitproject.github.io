@@ -177,9 +177,14 @@ export async function importCheckinCode(
     roomName: string | null,
     destination: string,
 ) {
-    if (!image || !buildingName?.trim() || !roomNumber?.trim()) {
+    if (
+        !image ||
+        !buildingName?.trim() ||
+        !roomNumber?.trim() ||
+        !roomName?.trim()
+    ) {
         throw new Error(
-            '用法：pnpm import:qr <图片路径> --building-name "Building Name" --room-number "Room Number" [--room-name "Room Name"]',
+            '用法：pnpm import:qr <图片路径> --building-name "Building Name" --room-number "Room Number" --room-name "照片上的房间名称（不含房间号）"',
         );
     }
     const lockPath = `${destination}.lock`;
@@ -266,17 +271,14 @@ export function parseImportArgs(args: string[]) {
     }
     if (positionals.length !== 1 || !positionals[0].trim())
         throw new Error("请提供一个二维码图片路径。");
-    for (const name of ["building-name", "room-number"] as const) {
+    for (const name of ["building-name", "room-number", "room-name"] as const) {
         if (!values[name]?.trim()) throw new Error(`请提供 --${name}。`);
-    }
-    if (values["room-name"] !== undefined && !values["room-name"].trim()) {
-        throw new Error("--room-name 不能为空；未知时请省略该参数。");
     }
     return {
         image: positionals[0],
         buildingName: values["building-name"]!.trim(),
         roomNumber: values["room-number"]!.trim(),
-        roomName: values["room-name"]?.trim() ?? null,
+        roomName: values["room-name"]!.trim(),
     };
 }
 

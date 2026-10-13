@@ -104,7 +104,42 @@ import {
     decodeMatrix,
     encodeMatrix,
     matchesCheckinCode,
+    formatRoomName,
 } from "../lib/qr-code.ts";
+
+test("photo room labels stay unchanged and new submissions require a name", async () => {
+    const [record] = JSON.parse(
+        await readFile(
+            new URL("../data/checkin-codes.json", import.meta.url),
+            "utf8",
+        ),
+    );
+    const roomName = "Clothworkers Court Speakman Lecture Theatre";
+    assert.equal(formatRoomName(roomName, "G.89"), `${roomName} (G.89)`);
+    assert.equal(formatRoomName("Edit 1", "G.06"), "Edit 1 (G.06)");
+    const url = new URL(
+        createClassroomIssueURL({
+            ...record,
+            buildingName: "Clothworkers Court",
+            roomName,
+            roomNumber: "G.89",
+        }),
+    );
+    assert.equal(
+        url.searchParams.get("title"),
+        `[新增教室] ${roomName} (G.89)`,
+    );
+    assert.equal(
+        JSON.parse(url.searchParams.get("record")!).roomName,
+        roomName,
+    );
+    assert.throws(() => createClassroomIssueURL({ ...record, roomName: null }));
+    assert.throws(() => createClassroomIssueURL({ ...record, roomName: " " }));
+    assert.equal(
+        validateClassroomSubmission({ ...record, roomName: null }).roomName,
+        null,
+    );
+});
 
 function expectedMatrix(code: QRCode.QRCode) {
     return Array.from({ length: code.modules.size }, (_, y) =>
@@ -272,7 +307,7 @@ test("file import is atomic, keeps room strings, and rejects duplicates", async 
                 Buffer.from("bad"),
                 "Other",
                 "002",
-                null,
+                "Room 2",
                 destination,
             ),
         );
@@ -410,15 +445,16 @@ test("named import arguments are order-independent and preserve room numbers", (
         ]),
         expected,
     );
-    assert.equal(
-        parseImportArgs([
-            "qr.png",
-            "--building-name",
-            "North",
-            "--room-number",
-            "001",
-        ]).roomName,
-        null,
+    assert.throws(
+        () =>
+            parseImportArgs([
+                "qr.png",
+                "--building-name",
+                "North",
+                "--room-number",
+                "001",
+            ]),
+        /room-name/,
     );
 });
 
@@ -429,6 +465,8 @@ test("import arguments reject missing, duplicate, unknown and empty values", () 
         "North",
         "--room-number",
         "001",
+        "--room-name",
+        "Edit 1",
     ];
     for (const args of [
         [],
