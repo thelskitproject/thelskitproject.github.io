@@ -261,7 +261,7 @@ test("invalid images and matrices fail", async () => {
         /校验失败/,
     );
     changed.matrix = "invalid";
-    assert.throws(() => decodeMatrix(changed.matrix), /矩阵无效/);
+    assert.throws(() => decodeMatrix(changed.matrix), /Invalid QR code matrix/);
 });
 
 test("file import is atomic, keeps room strings, and rejects duplicates", async () => {
@@ -387,10 +387,13 @@ test("packed Base64 rejects truncated bytes and nonzero padding", async () => {
     const bytes = Buffer.from(qr.matrix, "base64");
     assert.throws(
         () => decodeMatrix(bytes.subarray(1).toString("base64")),
-        /矩阵无效/,
+        /Invalid QR code matrix/,
     );
     bytes[bytes.length - 1] |= 1;
-    assert.throws(() => decodeMatrix(bytes.toString("base64")), /矩阵无效/);
+    assert.throws(
+        () => decodeMatrix(bytes.toString("base64")),
+        /Invalid QR code matrix/,
+    );
 });
 
 test("unified search matches all room fields and combined terms", () => {
@@ -506,7 +509,7 @@ test("photo upload rejects empty, oversized and unsupported files", async () => 
     }
     assert.throws(
         () => validateQRCodePhoto({ type: "image/png", size: 0 }),
-        /为空/,
+        /empty/,
     );
     assert.throws(
         () =>
@@ -518,7 +521,7 @@ test("photo upload rejects empty, oversized and unsupported files", async () => 
     );
     assert.throws(
         () => validateQRCodePhoto({ type: "image/heic", size: 1024 }),
-        /转换格式/,
+        /Convert HEIC/,
     );
 });
 
@@ -559,7 +562,7 @@ test("browser extraction returns the source binary pattern and rejects invalid s
                 width: size,
                 height: size + 1,
             }),
-        /完整/,
+        /complete QR code/,
     );
     assert.throws(
         () =>
@@ -568,13 +571,13 @@ test("browser extraction returns the source binary pattern and rejects invalid s
                 width: size,
                 height: size,
             }),
-        /完整/,
+        /complete QR code/,
     );
     pixels[0] = 128;
     assert.throws(
         () =>
             binaryQRCodeFromSymbol({ data: pixels, width: size, height: size }),
-        /完整/,
+        /complete QR code/,
     );
 });
 
@@ -584,13 +587,13 @@ test("photo picker and drop input share single-file validation", async () => {
         type: "image/png",
     });
     assert.equal(selectQRCodePhoto([photo]), photo);
-    assert.throws(() => selectQRCodePhoto([]), /一张/);
-    assert.throws(() => selectQRCodePhoto([photo, photo]), /一张/);
+    assert.throws(() => selectQRCodePhoto([]), /one QR code photo/);
+    assert.throws(() => selectQRCodePhoto([photo, photo]), /one QR code photo/);
     assert.throws(
         () =>
             selectQRCodePhoto([
                 new File(["text"], "wrong.txt", { type: "text/plain" }),
             ]),
-        /请选择/,
+        /Choose a PNG/,
     );
 });

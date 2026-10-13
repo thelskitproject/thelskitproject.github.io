@@ -1,5 +1,7 @@
 "use client";
 
+import { useLingui } from "@lingui/react";
+
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Dialog as DialogPrimitive } from "radix-ui";
@@ -55,6 +57,7 @@ function DialogContent({
 }: React.ComponentProps<typeof DialogPrimitive.Content> & {
     showCloseButton?: boolean;
 }) {
+    const { i18n } = useLingui();
     return (
         <DialogPortal>
             <DialogOverlay />
@@ -75,7 +78,7 @@ function DialogContent({
                             size="icon-sm"
                         >
                             <IconX />
-                            <span className="sr-only">关闭</span>
+                            <span className="sr-only">{i18n._("Close")}</span>
                         </Button>
                     </DialogPrimitive.Close>
                 )}
@@ -102,6 +105,7 @@ function DialogFooter({
 }: React.ComponentProps<"div"> & {
     showCloseButton?: boolean;
 }) {
+    const { i18n } = useLingui();
     return (
         <div
             data-slot="dialog-footer"
@@ -114,7 +118,7 @@ function DialogFooter({
             {children}
             {showCloseButton && (
                 <DialogPrimitive.Close asChild>
-                    <Button variant="outline">关闭</Button>
+                    <Button variant="outline">{i18n._("Close")}</Button>
                 </DialogPrimitive.Close>
             )}
         </div>

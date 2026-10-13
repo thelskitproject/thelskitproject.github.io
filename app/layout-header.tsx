@@ -1,10 +1,16 @@
+"use client";
+
+import { useLingui } from "@lingui/react";
+
 import { IconBrandGithub } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 export default function LayoutHeader({ className }: { className?: string }) {
+    const { i18n } = useLingui();
     return (
         <header
             className={cn(
@@ -21,25 +27,40 @@ export default function LayoutHeader({ className }: { className?: string }) {
                         </span>
                     </span>
                     <span className="hidden text-xs text-muted-foreground lg:inline">
-                        利兹校园工具
+                        {i18n._("Leeds campus tools")}
                     </span>
                 </Link>
-                <nav aria-label="主导航" className="flex items-center gap-1">
+                <nav
+                    aria-label={i18n._("Main navigation")}
+                    className="flex items-center gap-1"
+                >
                     <Button variant="ghost" asChild>
-                        <Link href="/code">教室二维码</Link>
+                        <Link href="/code">
+                            <span className="hidden sm:inline">
+                                {i18n._("Classroom QR codes")}
+                            </span>
+                            <span className="sm:hidden">
+                                {i18n._("QR codes")}
+                            </span>
+                        </Link>
                     </Button>
                     <Button
                         variant="ghost"
                         asChild
                         className="hidden sm:inline-flex"
                     >
-                        <Link href="/#tools">校园工具</Link>
+                        <Link href="/#tools">{i18n._("Campus tools")}</Link>
                     </Button>
-                    <Button variant="ghost" asChild>
-                        <Link href="/#about">关于</Link>
+                    <Button
+                        variant="ghost"
+                        asChild
+                        className="hidden sm:inline-flex"
+                    >
+                        <Link href="/#about">{i18n._("About")}</Link>
                     </Button>
                 </nav>
                 <div className="flex items-center gap-2">
+                    <LanguageSwitcher />
                     <ModeToggle />
                     <Button
                         variant="outline"
@@ -51,7 +72,9 @@ export default function LayoutHeader({ className }: { className?: string }) {
                             href="https://github.com/thelskitproject"
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label="在 GitHub 查看 LSKit（新窗口）"
+                            aria-label={i18n._(
+                                "View LSKit on GitHub (new window)",
+                            )}
                         >
                             <IconBrandGithub aria-hidden="true" />
                         </a>

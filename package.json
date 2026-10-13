@@ -3,16 +3,20 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "node scripts/prepare-qr-wasm.ts && next dev",
-        "build": "node scripts/prepare-qr-wasm.ts && next build",
+        "dev": "lingui compile && node scripts/prepare-qr-wasm.ts && next dev",
+        "build": "lingui compile && node scripts/prepare-qr-wasm.ts && next build",
         "sync:data": "git -C data pull --ff-only",
         "start": "next start",
         "lint": "eslint",
         "import:qr": "node scripts/import-checkin-code.ts",
-        "test:qr": "node --test scripts/checkin-code.test.ts"
+        "test:qr": "node --test scripts/checkin-code.test.ts",
+        "i18n:extract": "lingui extract",
+        "i18n:compile": "lingui compile"
     },
     "dependencies": {
         "@base-ui/react": "^1.2.0",
+        "@lingui/core": "^6.9.1",
+        "@lingui/react": "^6.9.1",
         "@tabler/icons-react": "^3.36.1",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
@@ -30,6 +34,7 @@
         "zxing-wasm": "3.1.5"
     },
     "devDependencies": {
+        "@lingui/cli": "^6.9.1",
         "@tailwindcss/postcss": "^4",
         "@types/node": "^20",
         "@types/qrcode": "^1.5.6",

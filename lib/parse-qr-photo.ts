@@ -5,10 +5,14 @@ export type QRPhotoResult = {
 };
 
 export function validateQRCodePhoto(file: Pick<File, "size" | "type">) {
-    if (!file.size) throw new Error("照片为空，请重新选择。");
-    if (file.size > 20 * 1024 * 1024) throw new Error("照片不能超过 20 MB。");
+    if (!file.size)
+        throw new Error(/*i18n*/ "This photo is empty. Choose another photo.");
+    if (file.size > 20 * 1024 * 1024)
+        throw new Error(/*i18n*/ "Photos must be 20 MB or smaller.");
     if (!["image/png", "image/jpeg", "image/webp"].includes(file.type)) {
-        throw new Error("请选择 PNG、JPEG 或 WebP 照片；HEIC 请先转换格式。");
+        throw new Error(
+            /*i18n*/ "Choose a PNG, JPEG or WebP photo. Convert HEIC photos first.",
+        );
     }
 }
 
@@ -18,16 +22,21 @@ export async function parseQRCodePhoto(file: File): Promise<QRPhotoResult> {
     try {
         bitmap = await createImageBitmap(file);
     } catch {
-        throw new Error("无法读取这张照片，请检查文件或换一张图片。");
+        throw new Error(
+            /*i18n*/ "Could not open this photo. Check the file or choose another photo.",
+        );
     }
     try {
         if (bitmap.width * bitmap.height > 20000000)
-            throw new Error("照片分辨率过高，请缩小至 2000 万像素以内。");
+            throw new Error(
+                /*i18n*/ "This photo is too large. Resize it to 20 megapixels or less.",
+            );
         const canvas = document.createElement("canvas");
         canvas.width = bitmap.width;
         canvas.height = bitmap.height;
         const context = canvas.getContext("2d");
-        if (!context) throw new Error("当前浏览器无法读取照片。");
+        if (!context)
+            throw new Error(/*i18n*/ "Your browser cannot read this photo.");
         context.fillStyle = "white";
         context.fillRect(0, 0, canvas.width, canvas.height);
         context.drawImage(bitmap, 0, 0);
@@ -48,9 +57,13 @@ export async function parseQRCodePhoto(file: File): Promise<QRPhotoResult> {
             },
         );
         if (!results.length)
-            throw new Error("未识别到二维码，请换一张完整、清晰的照片。");
+            throw new Error(
+                /*i18n*/ "No QR code found. Choose a clear photo showing the entire code.",
+            );
         if (results.length > 1)
-            throw new Error("照片包含多个二维码，请裁剪为一个后再试。");
+            throw new Error(
+                /*i18n*/ "Multiple QR codes found. Crop the photo to one code and try again.",
+            );
         return { matrix: binaryQRCodeFromSymbol(results[0].symbol) };
     } finally {
         bitmap.close();
@@ -71,7 +84,9 @@ export function binaryQRCodeFromSymbol(symbol: {
         data.length !== width * height ||
         data.some((pixel) => pixel !== 0 && pixel !== 255)
     ) {
-        throw new Error("无法提取完整的二维码模块矩阵，请换一张照片。");
+        throw new Error(
+            /*i18n*/ "Could not restore the complete QR code. Choose another photo.",
+        );
     }
     const matrix = encodeMatrix(
         Array.from({ length: height }, (_, y) =>
@@ -85,7 +100,8 @@ export function binaryQRCodeFromSymbol(symbol: {
 }
 
 export function selectQRCodePhoto(files: readonly File[]) {
-    if (files.length !== 1) throw new Error("请一次选择或拖入一张二维码照片。");
+    if (files.length !== 1)
+        throw new Error(/*i18n*/ "Choose or drop one QR code photo at a time.");
     validateQRCodePhoto(files[0]);
     return files[0];
 }

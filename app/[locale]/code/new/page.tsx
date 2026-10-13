@@ -1,7 +1,9 @@
 "use client";
 
+import { useLingui } from "@lingui/react";
+
 import { useRef, useState } from "react";
-import Link from "next/link";
+import { LocaleLink as Link } from "@/components/locale-link";
 import {
     IconArrowLeft,
     IconLoader2,
@@ -48,6 +50,7 @@ import { useCheckinCodes } from "@/lib/use-checkin-codes";
 import { createClassroomIssueURL } from "@/lib/classroom-submission";
 
 export default function NewCodePage() {
+    const { i18n } = useLingui();
     const { codes, error: buildingsError, retry } = useCheckinCodes();
     const buildings = Array.from(
         new Set(codes.map((entry) => entry.buildingName)),
@@ -87,7 +90,9 @@ export default function NewCodePage() {
                 setError(
                     error instanceof Error
                         ? error.message
-                        : "无法识别这张照片，请重试。",
+                        : i18n._(
+                              "Could not read this photo. Please try again.",
+                          ),
                 );
         } finally {
             if (attempt.current === current) setBusy(false);
@@ -112,7 +117,9 @@ export default function NewCodePage() {
             setError(
                 error instanceof Error
                     ? error.message
-                    : "无法准备记录，请检查教室信息。",
+                    : i18n._(
+                          "Could not prepare your submission. Check the classroom details.",
+                      ),
             );
         }
     }
@@ -121,15 +128,17 @@ export default function NewCodePage() {
             <Button variant="ghost" asChild className="-ml-3">
                 <Link href="/code">
                     <IconArrowLeft aria-hidden="true" />
-                    返回教室列表
+                    {i18n._("Back to classrooms")}
                 </Link>
             </Button>
             <div>
                 <h1 className="text-3xl font-semibold tracking-tight">
-                    分享教室二维码
+                    {i18n._("Share a classroom QR code")}
                 </h1>
                 <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                    填写教室信息，选择照片并确认二维码。
+                    {i18n._(
+                        "Enter the classroom details, choose a photo and check the QR code.",
+                    )}
                 </p>
             </div>
             <div className="grid items-start gap-6 lg:grid-cols-2">
@@ -137,15 +146,19 @@ export default function NewCodePage() {
                     <Card>
                         <CardHeader>
                             <CardTitle>
-                                <h2>教室信息</h2>
+                                <h2>{i18n._("Classroom details")}</h2>
                             </CardTitle>
                             <CardDescription>
-                                选择教学楼，也可以输入新名称。
+                                {i18n._(
+                                    "Select a building or enter a new name.",
+                                )}
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-5">
                             <div className="space-y-2">
-                                <Label htmlFor="building-name">教学楼</Label>
+                                <Label htmlFor="building-name">
+                                    {i18n._("Building")}
+                                </Label>
                                 <Combobox
                                     items={buildings}
                                     value={buildingName || null}
@@ -157,11 +170,15 @@ export default function NewCodePage() {
                                 >
                                     <ComboboxInput
                                         id="building-name"
-                                        placeholder="选择或输入教学楼名称"
+                                        placeholder={i18n._(
+                                            "Select or enter a building name",
+                                        )}
                                     />
                                     <ComboboxContent>
                                         <ComboboxEmpty>
-                                            使用输入的新名称。
+                                            {i18n._(
+                                                "Use the new name you entered.",
+                                            )}
                                         </ComboboxEmpty>
                                         <ComboboxList>
                                             {(building: string) => (
@@ -177,19 +194,23 @@ export default function NewCodePage() {
                                 </Combobox>
                                 {buildingsError && (
                                     <p className="text-xs text-muted-foreground">
-                                        教学楼列表暂时无法加载，可直接输入。
+                                        {i18n._(
+                                            "Building list unavailable. You can enter a name.",
+                                        )}
                                         <Button
                                             variant="link"
                                             size="sm"
                                             onClick={retry}
                                         >
-                                            重试
+                                            {i18n._("Retry")}
                                         </Button>
                                     </p>
                                 )}
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="room-name">房间名称</Label>
+                                <Label htmlFor="room-name">
+                                    {i18n._("Room name")}
+                                </Label>
                                 <Input
                                     id="room-name"
                                     required
@@ -199,24 +220,32 @@ export default function NewCodePage() {
                                     onChange={(event) =>
                                         setRoomName(event.target.value)
                                     }
-                                    placeholder="照抄照片上的房间名称"
+                                    placeholder={i18n._(
+                                        "Copy the room name from the photo",
+                                    )}
                                 />
                                 <p
                                     id="room-name-help"
                                     className="text-xs leading-6 text-muted-foreground"
                                 >
-                                    照抄照片上的文字，不含房间号；不要缩写或翻译。
+                                    {i18n._(
+                                        "Copy the text exactly as shown in the photo, excluding the room number. Do not abbreviate or translate it.",
+                                    )}
                                 </p>
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="room-number">房间号</Label>
+                                <Label htmlFor="room-number">
+                                    {i18n._("Room number")}
+                                </Label>
                                 <Input
                                     id="room-number"
                                     value={roomNumber}
                                     onChange={(event) =>
                                         setRoomNumber(event.target.value)
                                     }
-                                    placeholder="例如 G.06 或 7M.02"
+                                    placeholder={i18n._(
+                                        "For example, G.06 or 7M.02",
+                                    )}
                                 />
                             </div>
                         </CardContent>
@@ -224,9 +253,11 @@ export default function NewCodePage() {
                     <Card>
                         <CardHeader>
                             <CardTitle>
-                                <h2>二维码照片</h2>
+                                <h2>{i18n._("QR code photo")}</h2>
                             </CardTitle>
-                            <CardDescription>照片不会上传。</CardDescription>
+                            <CardDescription>
+                                {i18n._("Your photo stays on your device.")}
+                            </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-3">
                             <input
@@ -235,7 +266,7 @@ export default function NewCodePage() {
                                 type="file"
                                 accept="image/png,image/jpeg,image/webp"
                                 className="hidden"
-                                aria-label="选择二维码照片"
+                                aria-label={i18n._("Choose a QR code photo")}
                                 disabled={busy}
                                 onChange={(event) => {
                                     if (event.target.files?.length)
@@ -293,10 +324,14 @@ export default function NewCodePage() {
                                     />
                                     <span>
                                         {dragging
-                                            ? "松开即可"
+                                            ? i18n._("Drop your photo here")
                                             : file
-                                              ? "拖入或点击更换照片"
-                                              : "拖入二维码照片，或点击选择"}
+                                              ? i18n._(
+                                                    "Drop or click to replace your photo",
+                                                )
+                                              : i18n._(
+                                                    "Drop a QR code photo here or click to choose",
+                                                )}
                                     </span>
                                 </Button>
                             </div>
@@ -318,7 +353,11 @@ export default function NewCodePage() {
                                     )}
                                     <div className="min-w-0">
                                         <p className="text-xs text-muted-foreground">
-                                            {busy ? "正在识别…" : "已选择照片"}
+                                            {busy
+                                                ? i18n._(
+                                                      "Reading QR code\u2026",
+                                                  )
+                                                : i18n._("Photo selected")}
                                         </p>
                                         <p
                                             title={file.name}
@@ -330,8 +369,9 @@ export default function NewCodePage() {
                                 </div>
                             )}
                             <p className="text-xs leading-6 text-muted-foreground">
-                                支持 PNG、JPG、WebP，最大 20
-                                MB。请拍清完整二维码。
+                                {i18n._(
+                                    "PNG, JPG or WebP, up to 20 MB. Include the entire QR code clearly.",
+                                )}
                             </p>
 
                             {error && (
@@ -339,7 +379,7 @@ export default function NewCodePage() {
                                     role="alert"
                                     className="text-sm text-destructive"
                                 >
-                                    {error}
+                                    {i18n._(error)}
                                 </p>
                             )}
                         </CardContent>
@@ -348,11 +388,14 @@ export default function NewCodePage() {
                 <Card>
                     <CardHeader>
                         <CardTitle>
-                            <h2>二维码预览</h2>
+                            <h2>{i18n._("QR code preview")}</h2>
                         </CardTitle>
                         {(roomName.trim() || roomNumber.trim()) && (
                             <CardDescription>
-                                {formatRoomName(roomName, roomNumber)}
+                                {formatRoomName(
+                                    roomName || i18n._("Classroom"),
+                                    roomNumber,
+                                )}
                             </CardDescription>
                         )}
                     </CardHeader>
@@ -367,11 +410,13 @@ export default function NewCodePage() {
                                         className="size-4"
                                         aria-hidden="true"
                                     />
-                                    识别成功，请核对二维码。
+                                    {i18n._(
+                                        "QR code restored. Please check it.",
+                                    )}
                                 </p>
                                 <QRCodeCanvas
                                     matrix={matrix}
-                                    label="二维码预览"
+                                    label={i18n._("QR code preview")}
                                 />
                             </>
                         ) : (
@@ -380,21 +425,29 @@ export default function NewCodePage() {
                                 className="rounded-lg border border-dashed px-6 py-16 text-center text-sm leading-7 text-muted-foreground"
                             >
                                 {busy
-                                    ? "正在识别…"
-                                    : "选择或拖入照片后，将自动识别二维码。"}
+                                    ? i18n._("Reading QR code\u2026")
+                                    : i18n._(
+                                          "Choose or drop a photo to read its QR code automatically.",
+                                      )}
                             </div>
                         )}
                         <div className="text-xs leading-6 text-muted-foreground">
-                            <p>提交需要 GitHub 账号</p>
                             <p>
-                                上传即代表你同意
+                                {i18n._(
+                                    "A GitHub account is required to submit",
+                                )}
+                            </p>
+                            <p>
+                                {i18n._("By submitting, you agree to the ")}
                                 <Popover>
                                     <PopoverTrigger asChild>
                                         <button
                                             type="button"
                                             className="inline rounded-sm text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                                         >
-                                            教室二维码共享条款
+                                            {i18n._(
+                                                "classroom QR code sharing terms",
+                                            )}
                                         </button>
                                     </PopoverTrigger>
                                     <PopoverContent
@@ -402,18 +455,24 @@ export default function NewCodePage() {
                                         className="w-80 max-w-[calc(100vw-2rem)] max-h-[min(28rem,70vh)] overflow-y-auto space-y-3 text-xs leading-6"
                                     >
                                         <h3 className="text-sm font-medium">
-                                            教室二维码共享条款
+                                            {i18n._(
+                                                "classroom QR code sharing terms",
+                                            )}
                                         </h3>
                                         <p>
-                                            教室信息、二维码和你的 GitHub
-                                            账号会公开显示，照片不会上传。请勿提交个人信息、私人凭证或不允许公开分享的二维码。
+                                            {i18n._(
+                                                "Classroom details, the QR code and your GitHub account will be public. Your photo will not be uploaded. Do not submit personal information, private credentials or QR codes you may not share publicly.",
+                                            )}
                                         </p>
                                         <p>
-                                            提交即表示你有权公开分享这些信息，并已核对教室名称、房间号和二维码。请遵守学校规定，对提交内容负责。
+                                            {i18n._(
+                                                "By submitting, you confirm you may share this information publicly and have checked the room name, number and QR code. Follow university rules and take responsibility for your submission.",
+                                            )}
                                         </p>
                                         <p>
-                                            LSKit
-                                            并非学校官方服务，不保证二维码正确或持续有效，请自行核实。请勿冒用身份、代签或违反学校规定。在法律允许的范围内，项目不承担因信息错误、失效或不当使用造成的损失；法律规定不得免除的责任除外。
+                                            {i18n._(
+                                                "LSKit is unaffiliated with the university and does not guarantee QR codes are correct or remain valid. Please verify them yourself. Do not impersonate others, check in for someone else or violate university rules. To the extent permitted by law, the project is not liable for losses caused by incorrect or expired information or misuse. This does not exclude liability that cannot legally be excluded.",
+                                            )}
                                         </p>
                                     </PopoverContent>
                                 </Popover>
@@ -425,7 +484,7 @@ export default function NewCodePage() {
                             disabled={!matrix || busy}
                             className="w-full"
                         >
-                            提交教室记录
+                            {i18n._("Submit classroom")}
                         </Button>
                     </CardContent>
                 </Card>
@@ -443,16 +502,20 @@ export default function NewCodePage() {
                     }}
                 >
                     <DialogHeader>
-                        <DialogTitle>这些信息都正确吗？</DialogTitle>
+                        <DialogTitle>
+                            {i18n._("Are these details correct?")}
+                        </DialogTitle>
                         <DialogDescription>
-                            请核对教学楼、房间名称和房间号是否正确。
+                            {i18n._(
+                                "Please check the building, room name and room number.",
+                            )}
                         </DialogDescription>
                     </DialogHeader>
                     {review && (
                         <dl className="space-y-4 text-sm">
                             <div>
                                 <dt className="text-muted-foreground">
-                                    教学楼
+                                    {i18n._("Building")}
                                 </dt>
                                 <dd className="mt-1 break-words font-medium">
                                     {review.buildingName}
@@ -460,7 +523,7 @@ export default function NewCodePage() {
                             </div>
                             <div>
                                 <dt className="text-muted-foreground">
-                                    房间名称
+                                    {i18n._("Room name")}
                                 </dt>
                                 <dd className="mt-1 break-words font-medium">
                                     {review.roomName}
@@ -468,7 +531,7 @@ export default function NewCodePage() {
                             </div>
                             <div>
                                 <dt className="text-muted-foreground">
-                                    房间号
+                                    {i18n._("Room number")}
                                 </dt>
                                 <dd className="mt-1 break-words font-medium">
                                     {review.roomNumber}
@@ -482,7 +545,7 @@ export default function NewCodePage() {
                                 variant="outline"
                                 className="h-auto min-h-10 w-full whitespace-normal"
                             >
-                                有点问题，修改信息
+                                {i18n._("Something is wrong — edit details")}
                             </Button>
                         </DialogClose>
                         <Button
@@ -491,7 +554,9 @@ export default function NewCodePage() {
                                 if (review) window.location.assign(review.url);
                             }}
                         >
-                            都是对的，跳转GitHub添加二维码
+                            {i18n._(
+                                "Everything is correct — continue to GitHub",
+                            )}
                         </Button>
                     </DialogFooter>
                 </DialogContent>

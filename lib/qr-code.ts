@@ -6,7 +6,7 @@ export type CheckinCode = {
 };
 
 export function formatRoomName(roomName: string | null, roomNumber: string) {
-    return `${roomName?.trim() || "教室"}${roomNumber.trim() ? ` (${roomNumber.trim()})` : ""}`;
+    return `${roomName?.trim() || "Classroom"}${roomNumber.trim() ? ` (${roomNumber.trim()})` : ""}`;
 }
 
 // Row-major modules, most significant bit first; unused final bits are zero.
@@ -20,12 +20,13 @@ export function encodeMatrix(rows: string[]) {
 }
 
 export function decodeMatrix(matrix: string) {
-    if (typeof matrix !== "string") throw new Error("二维码模块矩阵无效。");
+    if (typeof matrix !== "string")
+        throw new Error(/*i18n*/ "Invalid QR code matrix.");
     let bytes: string;
     try {
         bytes = atob(matrix);
     } catch {
-        throw new Error("二维码模块矩阵无效。");
+        throw new Error(/*i18n*/ "Invalid QR code matrix.");
     }
     const size = Math.floor(Math.sqrt(bytes.length * 8));
     const unused = (8 - ((size * size) % 8)) % 8;
@@ -37,7 +38,7 @@ export function decodeMatrix(matrix: string) {
         btoa(bytes) !== matrix ||
         (bytes.charCodeAt(bytes.length - 1) & ((1 << unused) - 1)) !== 0
     ) {
-        throw new Error("二维码模块矩阵无效。");
+        throw new Error(/*i18n*/ "Invalid QR code matrix.");
     }
     return Array.from({ length: size }, (_, y) =>
         Array.from({ length: size }, (_, x) => {

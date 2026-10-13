@@ -1,5 +1,7 @@
 "use client";
 
+import { useLingui } from "@lingui/react";
+
 import { useState } from "react";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,7 +10,7 @@ import {
     InputGroupAddon,
     InputGroupInput,
 } from "@/components/ui/input-group";
-import Link from "next/link";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { QRCodeCanvas } from "@/components/qr-code-canvas";
 import { Label } from "@/components/ui/label";
 import {
@@ -38,6 +40,7 @@ import {
 } from "@/lib/qr-code";
 
 function CodeCard({ entry }: { entry: CheckinCode }) {
+    const { i18n } = useLingui();
     return (
         <Dialog>
             <Card className="gap-0 self-start py-0">
@@ -48,12 +51,12 @@ function CodeCard({ entry }: { entry: CheckinCode }) {
                                 variant="ghost"
                                 className="h-24 w-full flex-col items-stretch justify-between gap-2 whitespace-normal rounded-xl p-3 text-left"
                                 title={formatRoomName(
-                                    entry.roomName,
+                                    entry.roomName || i18n._("Classroom"),
                                     entry.roomNumber,
                                 )}
                             >
                                 <span className="line-clamp-2 h-10 shrink-0 text-sm leading-5 font-semibold">
-                                    {entry.roomName || "教室"}
+                                    {entry.roomName || i18n._("Classroom")}
                                 </span>
                                 <span className="flex w-full items-center justify-between gap-2">
                                     <span
@@ -66,7 +69,9 @@ function CodeCard({ entry }: { entry: CheckinCode }) {
                                         {entry.roomNumber}
                                     </Badge>
                                 </span>
-                                <span className="sr-only">查看二维码</span>
+                                <span className="sr-only">
+                                    {i18n._("View QR code")}
+                                </span>
                             </Button>
                         </DialogTrigger>
                     </h2>
@@ -75,14 +80,20 @@ function CodeCard({ entry }: { entry: CheckinCode }) {
             <DialogContent className="max-h-[calc(100dvh-2rem)] overflow-y-auto">
                 <DialogHeader className="pr-8">
                     <DialogTitle className="text-xl">
-                        {formatRoomName(entry.roomName, entry.roomNumber)}
+                        {formatRoomName(
+                            entry.roomName || i18n._("Classroom"),
+                            entry.roomNumber,
+                        )}
                     </DialogTitle>
                     <DialogDescription>{entry.buildingName}</DialogDescription>
                 </DialogHeader>
                 <div className="min-w-0">
                     <QRCodeCanvas
                         matrix={entry.matrix}
-                        label={`${entry.buildingName} ${entry.roomNumber} 教室二维码`}
+                        label={i18n._("{building} {number} classroom QR code", {
+                            building: entry.buildingName,
+                            number: entry.roomNumber,
+                        })}
                     />
                 </div>
             </DialogContent>
@@ -91,6 +102,7 @@ function CodeCard({ entry }: { entry: CheckinCode }) {
 }
 
 export default function CodePage() {
+    const { i18n } = useLingui();
     const [query, setQuery] = useState("");
     const [selectedBuildings, setSelectedBuildings] = useState<string[]>([]);
     const { codes, loading, error, retry } = useCheckinCodes();
@@ -105,19 +117,21 @@ export default function CodePage() {
             <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
                 <div>
                     <h1 className="text-3xl font-semibold tracking-tight">
-                        教室求码
+                        {i18n._("Classroom QR codes")}
                     </h1>
                     <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                        点击教室查看二维码。
+                        {i18n._("Select a classroom to view its QR code.")}
                     </p>
                 </div>
                 <Button asChild variant="outline" className="h-11">
-                    <Link href="/code/new">分享教室二维码</Link>
+                    <Link href="/code/new">
+                        {i18n._("Share a classroom QR code")}
+                    </Link>
                 </Button>
             </div>
             <div className="flex flex-col gap-2 sm:flex-row">
                 <Label htmlFor="code-search" className="sr-only">
-                    搜索教学楼、房间名称或房间号
+                    {i18n._("Search by building, room name or number")}
                 </Label>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -127,8 +141,10 @@ export default function CodePage() {
                         >
                             <IconBuilding aria-hidden="true" />
                             {selectedBuildings.length
-                                ? `教学楼 (${selectedBuildings.length})`
-                                : "全部教学楼"}
+                                ? i18n._("Buildings ({count})", {
+                                      count: selectedBuildings.length,
+                                  })
+                                : i18n._("All buildings")}
                             <IconChevronDown aria-hidden="true" />
                         </Button>
                     </DropdownMenuTrigger>
@@ -137,7 +153,7 @@ export default function CodePage() {
                         className="max-h-[60dvh] w-80 max-w-[calc(100vw-2rem)] overflow-y-auto"
                     >
                         <DropdownMenuLabel>
-                            选择教学楼（可多选）
+                            {i18n._("Select buildings")}
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         {buildings.map((building) => (
@@ -164,7 +180,7 @@ export default function CodePage() {
                             disabled={!selectedBuildings.length}
                             onSelect={() => setSelectedBuildings([])}
                         >
-                            清除筛选
+                            {i18n._("Clear filters")}
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
@@ -177,7 +193,9 @@ export default function CodePage() {
                         type="search"
                         value={query}
                         onChange={(event) => setQuery(event.target.value)}
-                        placeholder="搜索教学楼、房间名称或房间号"
+                        placeholder={i18n._(
+                            "Search by building, room name or number",
+                        )}
                     />
                 </InputGroup>
             </div>
@@ -188,25 +206,32 @@ export default function CodePage() {
                 >
                     <p>
                         {codes.length
-                            ? "更新失败，暂时显示上次加载的教室。"
-                            : error}
+                            ? i18n._(
+                                  "Could not refresh. Showing previously loaded classrooms.",
+                              )
+                            : i18n._(error)}
                     </p>
                     <Button variant="link" onClick={retry}>
-                        重试
+                        {i18n._("Retry")}
                     </Button>
                 </div>
             ) : (
                 <p role="status" className="text-sm text-muted-foreground">
                     {loading
-                        ? "正在加载教室…"
+                        ? i18n._("Loading classrooms\u2026")
                         : codes.length === 0
-                          ? "暂无教室二维码。"
-                          : `${matches.length} 间教室`}
+                          ? i18n._("No classroom QR codes yet.")
+                          : i18n._(
+                                "{count, plural, one {# classroom} other {# classrooms}}",
+                                { count: matches.length },
+                            )}
                 </p>
             )}
             {codes.length > 0 && matches.length === 0 && (
                 <p className="text-sm">
-                    没有找到教室，请更换关键词或清除筛选。
+                    {i18n._(
+                        "No classrooms found. Try another search or clear the filters.",
+                    )}
                 </p>
             )}
             <div

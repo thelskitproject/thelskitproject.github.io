@@ -6,7 +6,9 @@ export const classroomIssueURL =
 export function createClassroomIssueURL(value: unknown) {
     const record = validateClassroomSubmission(value);
     if (!record.roomName)
-        throw new Error("请照抄照片上的房间名称，不含房间号。");
+        throw new Error(
+            /*i18n*/ "Copy the room name exactly from the photo, excluding the room number.",
+        );
     const url = new URL(classroomIssueURL);
     url.searchParams.set(
         "title",
@@ -18,13 +20,15 @@ export function createClassroomIssueURL(value: unknown) {
 
 export function validateClassroomSubmission(value: unknown): CheckinCode {
     if (!value || typeof value !== "object" || Array.isArray(value))
-        throw new Error("请填写教室信息。");
+        throw new Error(/*i18n*/ "Enter the classroom details.");
     const record = value as Record<string, unknown>;
     if (
         Object.keys(record).sort().join(",") !==
         "buildingName,matrix,roomName,roomNumber"
     )
-        throw new Error("教室信息不完整，请重新填写。");
+        throw new Error(
+            /*i18n*/ "Classroom details are incomplete. Please enter them again.",
+        );
     function name(key: string, label: string, optional = false) {
         const text = record[key];
         if (optional && text === null) return null;
@@ -34,22 +38,33 @@ export function validateClassroomSubmission(value: unknown): CheckinCode {
             text.length > 200 ||
             /[\u0000-\u001f\u007f]/.test(text)
         )
-            throw new Error(`请填写${label}（最多 200 字）。`);
+            throw new Error(label);
         return text.trim();
     }
-    const buildingName = name("buildingName", "教学楼")!;
-    const roomNumber = name("roomNumber", "房间号")!;
-    const roomName = name("roomName", "房间名称", true);
+    const buildingName = name(
+        "buildingName",
+        /*i18n*/ "Please enter a building name (up to 200 characters).",
+    )!;
+    const roomNumber = name(
+        "roomNumber",
+        /*i18n*/ "Please enter a room number (up to 200 characters).",
+    )!;
+    const roomName = name(
+        "roomName",
+        /*i18n*/ "Please enter a room name (up to 200 characters).",
+        true,
+    );
     if (typeof record.matrix !== "string" || record.matrix.length > 5224)
-        throw new Error("请先识别二维码。");
+        throw new Error(/*i18n*/ "Choose a photo and read its QR code first.");
     decodeMatrix(record.matrix);
     return { buildingName, roomNumber, roomName, matrix: record.matrix };
 }
 
 export function parseClassroomIssue(body: string): CheckinCode {
-    if (body.length > 15000) throw new Error("Issue 内容过长。");
+    if (body.length > 15000)
+        throw new Error(/*i18n*/ "Issue body is too long.");
     const blocks = [...body.matchAll(/^```json\s*\n([\s\S]*?)^```\s*$/gm)];
     if (blocks.length !== 1)
-        throw new Error("请提供且只提供一个 json 代码块。");
+        throw new Error("Provide exactly one JSON code block.");
     return validateClassroomSubmission(JSON.parse(blocks[0][1]));
 }

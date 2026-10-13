@@ -48,7 +48,7 @@ macOS 上通过系统 sips 解码 HEIC/HEIF；其他图片支持 PNG、JPEG 等 
 记录写入 `data/checkin-codes.json`；房间号按字符串保存，以保留前导零。Room Name 必填，照抄照片上的原文，不含房间号，不要缩写或翻译；已有 null 记录仍可读取。命名参数顺序不限，重复或未知参数会报错。
 相同教学楼和房间号不会自动覆盖。更新已有记录前请先核实数据。
 
-网页 `/code` 从数据仓库的 `checkin-codes.min.json` 读取最新记录，并用 Canvas 解包 Base64 二进制模块矩阵后绘制二维码，不重新编码数据。
+网页 `/en/code` 或 `/zh/code` 从数据仓库的 `checkin-codes.min.json` 读取最新记录，并用 Canvas 解包 Base64 二进制模块矩阵后绘制二维码，不重新编码数据。
 每条记录仅包含 `buildingName`、`roomNumber`、`roomName` 和 `matrix`。
 `matrix` 为行优先、每字节最高位优先打包的 Base64，末尾补零；矩阵边长从解码后的字节数推导。
 不重复保存二维码版本、文本、原始字节或编码分段：这些信息已包含在二维码模块中。
@@ -62,7 +62,7 @@ macOS 上通过系统 sips 解码 HEIC/HEIF；其他图片支持 PNG、JPEG 等 
 
 ## 浏览器照片解析
 
-求码页的“新增教室二维码”入口（`/code/new`）在浏览器中本地处理 PNG、JPEG、WebP（最大 20 MB、2000 万像素）。
+求码页的“新增教室二维码”入口（`/en/code/new` 或 `/zh/code/new`）在浏览器中本地处理 PNG、JPEG、WebP（最大 20 MB、2000 万像素）。
 从照片提取原有二维码模块，显示 Canvas 还原预览，不返回或展示二维码内容数据。
 `lib/parse-qr-photo.ts` 提供 `parseQRCodePhoto(file)` 接口，仅返回 `{ matrix }`，其中 matrix 为按位打包的 Base64 模块矩阵。
 WASM 来自固定版本的本地依赖，`pnpm dev` / `pnpm build` 会自动复制到静态资源目录；照片不会上传到服务端。
@@ -85,3 +85,17 @@ pnpm dev
 网站新增页点击“提交教室记录”后，跳转到数据仓库，自动填写 Issue 标题和教室记录，用户登录后确认创建，由机器人创建数据 PR，维护者审核合并。页面打开、返回前台和每隔 60 秒会重新读取数据（后台暂停轮询）。请求失败会保留已加载的数据，并提供重试；GitHub 的缓存可能导致更新稍有延迟。无需配置跨仓库部署 Token。
 
 数据仓库命令：`git -C data status`、`git -C data add .`、`git -C data commit`、`git -C data push`。照片留在浏览器，Issue 中的教室信息和矩阵公开。
+
+## 本地化
+
+使用 Lingui，英文为源语言，中文为翻译语言。访问 `/` 时按浏览器首选语言导航到 `/zh/` 或 `/en/`，不支持的语言使用英文；页面内导航保留语言，右上角可切换。旧的 `/code` 和 `/code/new` 入口保留自动导航。GitHub Pages 导出每种语言的独立 HTML，不依赖服务端重定向。
+
+翻译文件：`locales/en/messages.po` 和 `locales/zh/messages.po`。界面使用 `useLingui()` 的 `i18n._("English source text")`；供浏览器显示的共享校验错误用 `/*i18n*/` 标记，保持 Node.js 导入工具独立于 React。
+
+```sh
+pnpm i18n:extract
+# 编辑 locales/zh/messages.po
+pnpm i18n:compile
+```
+
+`pnpm dev`、`pnpm build` 会先编译翻译；Pages 工作流也在 Next.js 构建前执行 `lingui compile`。`messages.ts` 是生成文件，不手动编辑。

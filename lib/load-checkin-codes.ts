@@ -9,15 +9,19 @@ export async function loadCheckinCodes(signal?: AbortSignal) {
         cache: "no-store",
         signal: signal ? AbortSignal.any([signal, timeout]) : timeout,
     });
-    if (!response.ok) throw new Error("暂时无法加载教室，请稍后重试。");
+    if (!response.ok)
+        throw new Error(
+            /*i18n*/ "Could not load classrooms. Please try again later.",
+        );
     const records: unknown = await response.json();
-    if (!Array.isArray(records)) throw new Error("教室数据暂时无法使用。");
+    if (!Array.isArray(records))
+        throw new Error(/*i18n*/ "Classroom data is unavailable.");
     const codes = records.map(validateClassroomSubmission);
     const keys = codes.map(
         (entry) =>
             `${entry.buildingName.toLowerCase()}\0${entry.roomNumber.toLowerCase()}`,
     );
     if (new Set(keys).size !== keys.length)
-        throw new Error("教室数据暂时无法使用。");
+        throw new Error(/*i18n*/ "Classroom data is unavailable.");
     return codes;
 }

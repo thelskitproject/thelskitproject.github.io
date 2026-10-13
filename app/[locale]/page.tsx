@@ -1,5 +1,9 @@
-import Link from "next/link";
-import styles from "./home.module.css";
+"use client";
+
+import { useLingui } from "@lingui/react";
+
+import { LocaleLink as Link } from "@/components/locale-link";
+import styles from "@/app/home.module.css";
 import {
     IconArrowUpRight,
     IconBrandGithub,
@@ -23,6 +27,7 @@ import { Separator } from "@/components/ui/separator";
 const github = "https://github.com/thelskitproject";
 
 export default function Page() {
+    const { i18n } = useLingui();
     return (
         <main className={styles.home}>
             <section className="mx-auto max-w-6xl px-6 pb-14 pt-12 sm:pb-20 sm:pt-20">
@@ -33,17 +38,19 @@ export default function Page() {
                                 className="size-4 text-blue-700 dark:text-blue-300"
                                 aria-hidden="true"
                             />{" "}
-                            利兹校园工具
+                            {i18n._("Leeds campus tools")}
                         </p>
                         <h1
                             className={`${styles.heading} text-[2.3rem] leading-[1.22] tracking-tight sm:text-6xl`}
                         >
-                            找到教室，
+                            {i18n._("Find your classroom.")}
                             <br />
-                            打开二维码。
+                            {i18n._("Open its QR code.")}
                         </h1>
                         <p className="mt-7 max-w-md text-base leading-8 text-muted-foreground">
-                            按教学楼、房间名称或房间号查找教室二维码。
+                            {i18n._(
+                                "Find a classroom QR code by building, room name or room number.",
+                            )}
                         </p>
                         <div className="mt-8 flex flex-wrap gap-3">
                             <Button
@@ -53,7 +60,7 @@ export default function Page() {
                             >
                                 <Link href="/code">
                                     <IconQrcode aria-hidden="true" />{" "}
-                                    查找教室二维码
+                                    {i18n._("Find a classroom QR code")}
                                 </Link>
                             </Button>
                             <Button
@@ -63,7 +70,7 @@ export default function Page() {
                                 className="h-12 rounded-lg px-5"
                             >
                                 <a href="#tools">
-                                    查看工具{" "}
+                                    {i18n._("Explore tools")}{" "}
                                     <IconArrowUpRight aria-hidden="true" />
                                 </a>
                             </Button>
@@ -73,7 +80,11 @@ export default function Page() {
                                 className="size-2 rounded-lg bg-blue-600 dark:bg-blue-400"
                                 aria-hidden="true"
                             />
-                            <p>社区项目，非学校官方服务。</p>
+                            <p>
+                                {i18n._(
+                                    "A community project, unaffiliated with the university.",
+                                )}
+                            </p>
                         </div>
                     </div>
                     <Card className="gap-0 rounded-xl border bg-card py-0 shadow-sm ring-0">
@@ -85,34 +96,48 @@ export default function Page() {
                                 />
                                 <CardTitle>
                                     <h2 className="text-lg font-semibold">
-                                        教室二维码
+                                        {i18n._("Classroom QR codes")}
                                     </h2>
                                 </CardTitle>
                             </div>
                             <CardDescription className="leading-7">
-                                查找已有教室，也可以分享新二维码。
+                                {i18n._(
+                                    "Find a classroom or share a new QR code.",
+                                )}
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="py-6">
                             <dl className="space-y-5 text-sm">
                                 <div>
-                                    <dt className="font-medium">查找教室</dt>
+                                    <dt className="font-medium">
+                                        {i18n._("Find a classroom")}
+                                    </dt>
                                     <dd className="mt-2 leading-7 text-muted-foreground">
-                                        输入教学楼、房间名称或房间号。
+                                        {i18n._(
+                                            "Enter a building, room name or room number.",
+                                        )}
                                     </dd>
                                 </div>
                                 <Separator />
                                 <div>
-                                    <dt className="font-medium">分享二维码</dt>
+                                    <dt className="font-medium">
+                                        {i18n._("Share a QR code")}
+                                    </dt>
                                     <dd className="mt-2 leading-7 text-muted-foreground">
-                                        找不到教室？上传照片，分享二维码。
+                                        {i18n._(
+                                            "Missing a classroom? Choose a photo to share its QR code.",
+                                        )}
                                     </dd>
                                 </div>
                                 <Separator />
                                 <div>
-                                    <dt className="font-medium">使用前核对</dt>
+                                    <dt className="font-medium">
+                                        {i18n._("Check before use")}
+                                    </dt>
                                     <dd className="mt-2 leading-7 text-muted-foreground">
-                                        请核对教室信息，并按学校要求使用。
+                                        {i18n._(
+                                            "Check the classroom details and follow university requirements.",
+                                        )}
                                     </dd>
                                 </div>
                             </dl>
@@ -129,7 +154,7 @@ export default function Page() {
                                     rel="noopener noreferrer"
                                 >
                                     <IconBrandGithub aria-hidden="true" />{" "}
-                                    项目主页{" "}
+                                    {i18n._("Project on GitHub")}{" "}
                                     <IconArrowUpRight aria-hidden="true" />
                                 </a>
                             </Button>
@@ -149,7 +174,7 @@ export default function Page() {
                             id="tools-title"
                             className={`${styles.heading} text-3xl leading-snug sm:text-4xl`}
                         >
-                            校园工具
+                            {i18n._("Campus tools")}
                         </h2>
                     </div>
                     <div className="grid gap-6 md:grid-cols-[1.15fr_1fr]">
@@ -164,22 +189,26 @@ export default function Page() {
                                         variant="outline"
                                         className="border-white/25 text-blue-100"
                                     >
-                                        可用
+                                        {i18n._("Available")}
                                     </Badge>
                                 </div>
                                 <CardTitle>
                                     <h3 className="text-2xl font-semibold">
-                                        教室二维码
+                                        {i18n._("Classroom QR codes")}
                                     </h3>
                                 </CardTitle>
                                 <CardDescription className="mt-2 max-w-sm leading-7 text-blue-100/85">
-                                    查找教室，打开二维码。
+                                    {i18n._(
+                                        "Find a classroom and open its QR code.",
+                                    )}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <Separator className="bg-white/15" />
                                 <p className="mt-5 text-xs leading-6 text-blue-100/80">
-                                    请按学校要求签到。
+                                    {i18n._(
+                                        "Follow university requirements when checking in.",
+                                    )}
                                 </p>
                             </CardContent>
                             <CardFooter className="mt-auto">
@@ -189,7 +218,7 @@ export default function Page() {
                                     className="rounded-lg bg-white px-5 text-[#183153] hover:bg-blue-100"
                                 >
                                     <Link href="/code">
-                                        查找教室{" "}
+                                        {i18n._("Find a classroom")}{" "}
                                         <IconArrowUpRight aria-hidden="true" />
                                     </Link>
                                 </Button>
@@ -203,17 +232,19 @@ export default function Page() {
                                 />
                                 <CardTitle>
                                     <h3 className="text-2xl font-semibold">
-                                        分享教室二维码
+                                        {i18n._("Share a classroom QR code")}
                                     </h3>
                                 </CardTitle>
                                 <CardDescription className="mt-2 leading-7">
-                                    拍下二维码，补充教室信息。
+                                    {i18n._(
+                                        "Take a photo of the QR code and add the classroom details.",
+                                    )}
                                 </CardDescription>
                             </CardHeader>
                             <CardFooter className="mt-auto">
                                 <Button asChild variant="outline">
                                     <Link href="/code/new">
-                                        分享二维码{" "}
+                                        {i18n._("Share a QR code")}{" "}
                                         <IconArrowUpRight aria-hidden="true" />
                                     </Link>
                                 </Button>
@@ -237,17 +268,21 @@ export default function Page() {
                         id="about-title"
                         className={`${styles.heading} text-3xl leading-snug sm:text-4xl`}
                     >
-                        关于 LSKit
+                        {i18n._("About LSKit")}
                     </h2>
                     <p className="mt-6 max-w-sm text-sm leading-8 text-muted-foreground">
-                        为在利兹学习的同学提供校园工具。
+                        {i18n._("Campus tools for students in Leeds.")}
                     </p>
                 </div>
                 <div className="space-y-7 md:pt-4">
                     <div>
-                        <h3 className="text-lg font-semibold">反馈与建议</h3>
+                        <h3 className="text-lg font-semibold">
+                            {i18n._("Feedback and suggestions")}
+                        </h3>
                         <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                            发现错误或有建议？欢迎告诉我们。
+                            {i18n._(
+                                "Found a mistake or have a suggestion? Let us know.",
+                            )}
                         </p>
                         <Button
                             asChild
@@ -259,17 +294,20 @@ export default function Page() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                前往 GitHub{" "}
+                                {i18n._("Visit GitHub")}{" "}
                                 <IconArrowUpRight aria-hidden="true" />
                             </a>
                         </Button>
                     </div>
                     <Separator />
                     <div>
-                        <h3 className="text-lg font-semibold">使用提醒</h3>
+                        <h3 className="text-lg font-semibold">
+                            {i18n._("Before you use LSKit")}
+                        </h3>
                         <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                            LSKit
-                            并非学校官方服务。课程和考勤要求请以学校通知为准。
+                            {i18n._(
+                                "LSKit is unaffiliated with the university. Refer to university guidance for course and attendance requirements.",
+                            )}
                         </p>
                     </div>
                 </div>
@@ -282,11 +320,11 @@ export default function Page() {
                             <h2
                                 className={`${styles.heading} text-2xl sm:text-3xl`}
                             >
-                                发现信息有误？
+                                {i18n._("Found incorrect information?")}
                             </h2>
                         </CardTitle>
                         <CardDescription className="mt-3 leading-7 text-[#506483]">
-                            告诉我们，一起完善。
+                            {i18n._("Let us know and help improve it.")}
                         </CardDescription>
                     </CardHeader>
                     <CardFooter className="shrink-0">
@@ -300,7 +338,8 @@ export default function Page() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <IconBrandGithub aria-hidden="true" /> 反馈问题
+                                <IconBrandGithub aria-hidden="true" />{" "}
+                                {i18n._("Report a problem")}
                             </a>
                         </Button>
                     </CardFooter>
@@ -312,7 +351,7 @@ export default function Page() {
                         <span className="mr-3 text-base font-bold text-foreground">
                             LSKit
                         </span>
-                        利兹校园工具
+                        {i18n._("Leeds campus tools")}
                     </p>
                     <a
                         href={github}

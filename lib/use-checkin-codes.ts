@@ -24,7 +24,7 @@ export function useCheckinCodes() {
                 if (!current.signal.aborted)
                     setState((previous) => ({
                         ...previous,
-                        error: "暂时无法加载教室，请稍后重试。",
+                        error: /*i18n*/ "Could not load classrooms. Please try again later.",
                     }));
             }
         }

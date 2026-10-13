@@ -1,0 +1,616 @@
+msgid ""
+msgstr ""
+"Language: zh\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:10
+msgid "Copy the room name exactly from the photo, excluding the room number."
+msgstr "请照抄照片上的房间名称，不含房间号。"
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:23
+msgid "Enter the classroom details."
+msgstr "请填写教室信息。"
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:30
+msgid "Classroom details are incomplete. Please enter them again."
+msgstr "教室信息不完整，请重新填写。"
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:46
+msgid "Please enter a building name (up to 200 characters)."
+msgstr "请填写教学楼（最多 200 字）。"
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:50
+msgid "Please enter a room number (up to 200 characters)."
+msgstr "请填写房间号（最多 200 字）。"
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:54
+msgid "Please enter a room name (up to 200 characters)."
+msgstr "请填写房间名称（最多 200 字）。"
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:58
+msgid "Choose a photo and read its QR code first."
+msgstr "请先识别二维码。"
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:65
+msgid "Issue body is too long."
+msgstr "Issue 内容过长。"
+
+#. js-lingui-explicit-id
+#: lib/load-checkin-codes.ts:14
+#: lib/use-checkin-codes.ts:27
+msgid "Could not load classrooms. Please try again later."
+msgstr "暂时无法加载教室，请稍后重试。"
+
+#. js-lingui-explicit-id
+#: lib/load-checkin-codes.ts:18
+#: lib/load-checkin-codes.ts:25
+msgid "Classroom data is unavailable."
+msgstr "教室数据暂时无法使用。"
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:9
+msgid "This photo is empty. Choose another photo."
+msgstr "照片为空，请重新选择。"
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:11
+msgid "Photos must be 20 MB or smaller."
+msgstr "照片不能超过 20 MB。"
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:14
+msgid "Choose a PNG, JPEG or WebP photo. Convert HEIC photos first."
+msgstr "请选择 PNG、JPEG 或 WebP 照片；HEIC 请先转换格式。"
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:26
+msgid "Could not open this photo. Check the file or choose another photo."
+msgstr "无法读取这张照片，请检查文件或换一张图片。"
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:32
+msgid "This photo is too large. Resize it to 20 megapixels or less."
+msgstr "照片分辨率过高，请缩小至 2000 万像素以内。"
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:39
+msgid "Your browser cannot read this photo."
+msgstr "当前浏览器无法读取照片。"
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:61
+msgid "No QR code found. Choose a clear photo showing the entire code."
+msgstr "未识别到二维码，请换一张完整、清晰的照片。"
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:65
+msgid "Multiple QR codes found. Crop the photo to one code and try again."
+msgstr "照片包含多个二维码，请裁剪为一个后再试。"
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:88
+msgid "Could not restore the complete QR code. Choose another photo."
+msgstr "无法提取完整的二维码模块矩阵，请换一张照片。"
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:104
+msgid "Choose or drop one QR code photo at a time."
+msgstr "请一次选择或拖入一张二维码照片。"
+
+#. js-lingui-explicit-id
+#: lib/qr-code.ts:24
+#: lib/qr-code.ts:29
+#: lib/qr-code.ts:41
+msgid "Invalid QR code matrix."
+msgstr "二维码模块矩阵无效。"
+
+#. js-lingui-explicit-id
+#: components/language-switcher.tsx:25
+msgid "Change language"
+msgstr "切换语言"
+
+#. js-lingui-explicit-id
+#: components/mode-toggle.tsx:28
+msgid "Change appearance"
+msgstr "切换外观"
+
+#. js-lingui-explicit-id
+#: components/mode-toggle.tsx:34
+msgid "Light"
+msgstr "浅色"
+
+#. js-lingui-explicit-id
+#: components/mode-toggle.tsx:37
+msgid "Dark"
+msgstr "深色"
+
+#. js-lingui-explicit-id
+#: components/mode-toggle.tsx:40
+msgid "System"
+msgstr "跟随系统"
+
+#. js-lingui-explicit-id
+#: components/qr-code-canvas.tsx:47
+msgid "{label}. Please use a browser that supports Canvas."
+msgstr "{label}，请使用支持 Canvas 的浏览器。"
+
+#. js-lingui-explicit-id
+#: components/ui/dialog.tsx:81
+#: components/ui/dialog.tsx:121
+msgid "Close"
+msgstr "关闭"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:41
+#: app/[locale]/page.tsx:354
+#: app/layout-header.tsx:30
+msgid "Leeds campus tools"
+msgstr "利兹校园工具"
+
+#. js-lingui-explicit-id
+#: app/layout-header.tsx:34
+msgid "Main navigation"
+msgstr "主导航"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:120
+#: app/[locale]/page.tsx:99
+#: app/[locale]/page.tsx:197
+#: app/layout-header.tsx:40
+msgid "Classroom QR codes"
+msgstr "教室二维码"
+
+#. js-lingui-explicit-id
+#: app/layout-header.tsx:43
+msgid "QR codes"
+msgstr "教室二维码"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:177
+#: app/layout-header.tsx:52
+msgid "Campus tools"
+msgstr "校园工具"
+
+#. js-lingui-explicit-id
+#: app/layout-header.tsx:59
+msgid "About"
+msgstr "关于"
+
+#. js-lingui-explicit-id
+#: app/layout-header.tsx:75
+msgid "View LSKit on GitHub (new window)"
+msgstr "在 GitHub 查看 LSKit（新窗口）"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:46
+msgid "Find your classroom."
+msgstr "找到教室，"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:48
+msgid "Open its QR code."
+msgstr "打开二维码。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:51
+msgid "Find a classroom QR code by building, room name or room number."
+msgstr "按教学楼、房间名称或房间号查找教室二维码。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:63
+msgid "Find a classroom QR code"
+msgstr "查找教室二维码"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:73
+msgid "Explore tools"
+msgstr "查看工具"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:84
+msgid "A community project, unaffiliated with the university."
+msgstr "社区项目，非学校官方服务。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:104
+msgid "Find a classroom or share a new QR code."
+msgstr "查找已有教室，也可以分享新二维码。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:113
+#: app/[locale]/page.tsx:221
+msgid "Find a classroom"
+msgstr "查找教室"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:116
+msgid "Enter a building, room name or room number."
+msgstr "输入教学楼、房间名称或房间号。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:124
+#: app/[locale]/page.tsx:247
+msgid "Share a QR code"
+msgstr "分享二维码"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:127
+msgid "Missing a classroom? Choose a photo to share its QR code."
+msgstr "找不到教室？上传照片，分享二维码。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:135
+msgid "Check before use"
+msgstr "使用前核对"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:138
+msgid "Check the classroom details and follow university requirements."
+msgstr "请核对教室信息，并按学校要求使用。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:157
+msgid "Project on GitHub"
+msgstr "项目主页"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:192
+msgid "Available"
+msgstr "可用"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:201
+msgid "Find a classroom and open its QR code."
+msgstr "查找教室，打开二维码。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:209
+msgid "Follow university requirements when checking in."
+msgstr "请按学校要求签到。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:136
+#: app/[locale]/code/page.tsx:128
+#: app/[locale]/page.tsx:235
+msgid "Share a classroom QR code"
+msgstr "分享教室二维码"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:239
+msgid "Take a photo of the QR code and add the classroom details."
+msgstr "拍下二维码，补充教室信息。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:271
+msgid "About LSKit"
+msgstr "关于 LSKit"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:274
+msgid "Campus tools for students in Leeds."
+msgstr "为在利兹学习的同学提供校园工具。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:280
+msgid "Feedback and suggestions"
+msgstr "反馈与建议"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:283
+msgid "Found a mistake or have a suggestion? Let us know."
+msgstr "发现错误或有建议？欢迎告诉我们。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:297
+msgid "Visit GitHub"
+msgstr "前往 GitHub"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:305
+msgid "Before you use LSKit"
+msgstr "使用提醒"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:308
+msgid "LSKit is unaffiliated with the university. Refer to university guidance for course and attendance requirements."
+msgstr "LSKit 并非学校官方服务。课程和考勤要求请以学校通知为准。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:323
+msgid "Found incorrect information?"
+msgstr "发现信息有误？"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:327
+msgid "Let us know and help improve it."
+msgstr "告诉我们，一起完善。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:342
+msgid "Report a problem"
+msgstr "反馈问题"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:396
+#: app/[locale]/code/page.tsx:54
+#: app/[locale]/code/page.tsx:59
+#: app/[locale]/code/page.tsx:84
+msgid "Classroom"
+msgstr "教室"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:73
+msgid "View QR code"
+msgstr "查看二维码"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:93
+msgid "{building} {number} classroom QR code"
+msgstr "{building} {number} 教室二维码"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:123
+msgid "Select a classroom to view its QR code."
+msgstr "点击教室查看二维码。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:134
+#: app/[locale]/code/page.tsx:196
+msgid "Search by building, room name or number"
+msgstr "搜索教学楼、房间名称或房间号"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:144
+msgid "Buildings ({count})"
+msgstr "教学楼 ({count})"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:147
+msgid "All buildings"
+msgstr "全部教学楼"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:156
+msgid "Select buildings"
+msgstr "选择教学楼（可多选）"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:183
+msgid "Clear filters"
+msgstr "清除筛选"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:209
+msgid "Could not refresh. Showing previously loaded classrooms."
+msgstr "更新失败，暂时显示上次加载的教室。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:205
+#: app/[locale]/code/page.tsx:215
+msgid "Retry"
+msgstr "重试"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:221
+msgid "Loading classrooms…"
+msgstr "正在加载教室…"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:223
+msgid "No classroom QR codes yet."
+msgstr "暂无教室二维码。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:224
+msgid "{count, plural, one {# classroom} other {# classrooms}}"
+msgstr "{count} 间教室"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:232
+msgid "No classrooms found. Try another search or clear the filters."
+msgstr "没有找到教室，请更换关键词或清除筛选。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:93
+msgid "Could not read this photo. Please try again."
+msgstr "无法识别这张照片，请重试。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:120
+msgid "Could not prepare your submission. Check the classroom details."
+msgstr "无法准备记录，请检查教室信息。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:131
+msgid "Back to classrooms"
+msgstr "返回教室列表"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:139
+msgid "Enter the classroom details, choose a photo and check the QR code."
+msgstr "填写教室信息，选择照片并确认二维码。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:149
+msgid "Classroom details"
+msgstr "教室信息"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:152
+msgid "Select a building or enter a new name."
+msgstr "选择教学楼，也可以输入新名称。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:160
+#: app/[locale]/code/new/page.tsx:518
+msgid "Building"
+msgstr "教学楼"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:173
+msgid "Select or enter a building name"
+msgstr "选择或输入教学楼名称"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:179
+msgid "Use the new name you entered."
+msgstr "使用输入的新名称。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:197
+msgid "Building list unavailable. You can enter a name."
+msgstr "教学楼列表暂时无法加载，可直接输入。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:212
+#: app/[locale]/code/new/page.tsx:526
+msgid "Room name"
+msgstr "房间名称"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:223
+msgid "Copy the room name from the photo"
+msgstr "照抄照片上的房间名称"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:231
+msgid "Copy the text exactly as shown in the photo, excluding the room number. Do not abbreviate or translate it."
+msgstr "照抄照片上的文字，不含房间号；不要缩写或翻译。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:238
+#: app/[locale]/code/new/page.tsx:534
+msgid "Room number"
+msgstr "房间号"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:246
+msgid "For example, G.06 or 7M.02"
+msgstr "例如 G.06 或 7M.02"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:256
+msgid "QR code photo"
+msgstr "二维码照片"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:259
+msgid "Your photo stays on your device."
+msgstr "照片不会上传。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:269
+msgid "Choose a QR code photo"
+msgstr "选择二维码照片"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:327
+msgid "Drop your photo here"
+msgstr "松开即可"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:329
+msgid "Drop or click to replace your photo"
+msgstr "拖入或点击更换照片"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:332
+msgid "Drop a QR code photo here or click to choose"
+msgstr "拖入二维码照片，或点击选择"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:357
+#: app/[locale]/code/new/page.tsx:428
+msgid "Reading QR code…"
+msgstr "正在识别…"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:360
+msgid "Photo selected"
+msgstr "已选择照片"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:372
+msgid "PNG, JPG or WebP, up to 20 MB. Include the entire QR code clearly."
+msgstr "支持 PNG、JPG、WebP，最大 20 MB。请拍清完整二维码。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:391
+#: app/[locale]/code/new/page.tsx:419
+msgid "QR code preview"
+msgstr "二维码预览"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:413
+msgid "QR code restored. Please check it."
+msgstr "识别成功，请核对二维码。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:429
+msgid "Choose or drop a photo to read its QR code automatically."
+msgstr "选择或拖入照片后，将自动识别二维码。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:436
+msgid "A GitHub account is required to submit"
+msgstr "提交需要 GitHub 账号"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:441
+msgid "By submitting, you agree to the "
+msgstr "上传即代表你同意"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:448
+#: app/[locale]/code/new/page.tsx:458
+msgid "classroom QR code sharing terms"
+msgstr "教室二维码共享条款"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:463
+msgid "Classroom details, the QR code and your GitHub account will be public. Your photo will not be uploaded. Do not submit personal information, private credentials or QR codes you may not share publicly."
+msgstr "教室信息、二维码和你的 GitHub 账号会公开显示，照片不会上传。请勿提交个人信息、私人凭证或不允许公开分享的二维码。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:468
+msgid "By submitting, you confirm you may share this information publicly and have checked the room name, number and QR code. Follow university rules and take responsibility for your submission."
+msgstr "提交即表示你有权公开分享这些信息，并已核对教室名称、房间号和二维码。请遵守学校规定，对提交内容负责。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:473
+msgid "LSKit is unaffiliated with the university and does not guarantee QR codes are correct or remain valid. Please verify them yourself. Do not impersonate others, check in for someone else or violate university rules. To the extent permitted by law, the project is not liable for losses caused by incorrect or expired information or misuse. This does not exclude liability that cannot legally be excluded."
+msgstr "LSKit 并非学校官方服务，不保证二维码正确或持续有效，请自行核实。请勿冒用身份、代签或违反学校规定。在法律允许的范围内，项目不承担因信息错误、失效或不当使用造成的损失；法律规定不得免除的责任除外。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:487
+msgid "Submit classroom"
+msgstr "提交教室记录"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:506
+msgid "Are these details correct?"
+msgstr "这些信息都正确吗？"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:509
+msgid "Please check the building, room name and room number."
+msgstr "请核对教学楼、房间名称和房间号是否正确。"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:548
+msgid "Something is wrong — edit details"
+msgstr "有点问题，修改信息"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:557
+msgid "Everything is correct — continue to GitHub"
+msgstr "都是对的，跳转GitHub添加二维码"

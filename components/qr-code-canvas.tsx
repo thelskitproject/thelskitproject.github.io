@@ -1,5 +1,7 @@
 "use client";
 
+import { useLingui } from "@lingui/react";
+
 import { useEffect, useMemo, useRef } from "react";
 import { decodeMatrix } from "@/lib/qr-code";
 
@@ -10,6 +12,7 @@ export function QRCodeCanvas({
     matrix: string;
     label: string;
 }) {
+    const { i18n } = useLingui();
     const canvas = useRef<HTMLCanvasElement>(null);
     const rows = useMemo(() => decodeMatrix(matrix), [matrix]);
     const size = rows.length;
@@ -41,7 +44,9 @@ export function QRCodeCanvas({
             aria-label={label}
             className="mx-auto h-auto w-full max-w-96 [image-rendering:pixelated]"
         >
-            {label}，请使用支持 Canvas 的浏览器。
+            {i18n._("{label}. Please use a browser that supports Canvas.", {
+                label,
+            })}
         </canvas>
     );
 }

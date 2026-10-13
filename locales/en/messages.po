@@ -1,0 +1,616 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:10
+msgid "Copy the room name exactly from the photo, excluding the room number."
+msgstr "Copy the room name exactly from the photo, excluding the room number."
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:23
+msgid "Enter the classroom details."
+msgstr "Enter the classroom details."
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:30
+msgid "Classroom details are incomplete. Please enter them again."
+msgstr "Classroom details are incomplete. Please enter them again."
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:46
+msgid "Please enter a building name (up to 200 characters)."
+msgstr "Please enter a building name (up to 200 characters)."
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:50
+msgid "Please enter a room number (up to 200 characters)."
+msgstr "Please enter a room number (up to 200 characters)."
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:54
+msgid "Please enter a room name (up to 200 characters)."
+msgstr "Please enter a room name (up to 200 characters)."
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:58
+msgid "Choose a photo and read its QR code first."
+msgstr "Choose a photo and read its QR code first."
+
+#. js-lingui-explicit-id
+#: lib/classroom-submission.ts:65
+msgid "Issue body is too long."
+msgstr "Issue body is too long."
+
+#. js-lingui-explicit-id
+#: lib/load-checkin-codes.ts:14
+#: lib/use-checkin-codes.ts:27
+msgid "Could not load classrooms. Please try again later."
+msgstr "Could not load classrooms. Please try again later."
+
+#. js-lingui-explicit-id
+#: lib/load-checkin-codes.ts:18
+#: lib/load-checkin-codes.ts:25
+msgid "Classroom data is unavailable."
+msgstr "Classroom data is unavailable."
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:9
+msgid "This photo is empty. Choose another photo."
+msgstr "This photo is empty. Choose another photo."
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:11
+msgid "Photos must be 20 MB or smaller."
+msgstr "Photos must be 20 MB or smaller."
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:14
+msgid "Choose a PNG, JPEG or WebP photo. Convert HEIC photos first."
+msgstr "Choose a PNG, JPEG or WebP photo. Convert HEIC photos first."
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:26
+msgid "Could not open this photo. Check the file or choose another photo."
+msgstr "Could not open this photo. Check the file or choose another photo."
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:32
+msgid "This photo is too large. Resize it to 20 megapixels or less."
+msgstr "This photo is too large. Resize it to 20 megapixels or less."
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:39
+msgid "Your browser cannot read this photo."
+msgstr "Your browser cannot read this photo."
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:61
+msgid "No QR code found. Choose a clear photo showing the entire code."
+msgstr "No QR code found. Choose a clear photo showing the entire code."
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:65
+msgid "Multiple QR codes found. Crop the photo to one code and try again."
+msgstr "Multiple QR codes found. Crop the photo to one code and try again."
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:88
+msgid "Could not restore the complete QR code. Choose another photo."
+msgstr "Could not restore the complete QR code. Choose another photo."
+
+#. js-lingui-explicit-id
+#: lib/parse-qr-photo.ts:104
+msgid "Choose or drop one QR code photo at a time."
+msgstr "Choose or drop one QR code photo at a time."
+
+#. js-lingui-explicit-id
+#: lib/qr-code.ts:24
+#: lib/qr-code.ts:29
+#: lib/qr-code.ts:41
+msgid "Invalid QR code matrix."
+msgstr "Invalid QR code matrix."
+
+#. js-lingui-explicit-id
+#: components/language-switcher.tsx:25
+msgid "Change language"
+msgstr "Change language"
+
+#. js-lingui-explicit-id
+#: components/mode-toggle.tsx:28
+msgid "Change appearance"
+msgstr "Change appearance"
+
+#. js-lingui-explicit-id
+#: components/mode-toggle.tsx:34
+msgid "Light"
+msgstr "Light"
+
+#. js-lingui-explicit-id
+#: components/mode-toggle.tsx:37
+msgid "Dark"
+msgstr "Dark"
+
+#. js-lingui-explicit-id
+#: components/mode-toggle.tsx:40
+msgid "System"
+msgstr "System"
+
+#. js-lingui-explicit-id
+#: components/qr-code-canvas.tsx:47
+msgid "{label}. Please use a browser that supports Canvas."
+msgstr "{label}. Please use a browser that supports Canvas."
+
+#. js-lingui-explicit-id
+#: components/ui/dialog.tsx:81
+#: components/ui/dialog.tsx:121
+msgid "Close"
+msgstr "Close"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:41
+#: app/[locale]/page.tsx:354
+#: app/layout-header.tsx:30
+msgid "Leeds campus tools"
+msgstr "Leeds campus tools"
+
+#. js-lingui-explicit-id
+#: app/layout-header.tsx:34
+msgid "Main navigation"
+msgstr "Main navigation"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:120
+#: app/[locale]/page.tsx:99
+#: app/[locale]/page.tsx:197
+#: app/layout-header.tsx:40
+msgid "Classroom QR codes"
+msgstr "Classroom QR codes"
+
+#. js-lingui-explicit-id
+#: app/layout-header.tsx:43
+msgid "QR codes"
+msgstr "QR codes"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:177
+#: app/layout-header.tsx:52
+msgid "Campus tools"
+msgstr "Campus tools"
+
+#. js-lingui-explicit-id
+#: app/layout-header.tsx:59
+msgid "About"
+msgstr "About"
+
+#. js-lingui-explicit-id
+#: app/layout-header.tsx:75
+msgid "View LSKit on GitHub (new window)"
+msgstr "View LSKit on GitHub (new window)"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:46
+msgid "Find your classroom."
+msgstr "Find your classroom."
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:48
+msgid "Open its QR code."
+msgstr "Open its QR code."
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:51
+msgid "Find a classroom QR code by building, room name or room number."
+msgstr "Find a classroom QR code by building, room name or room number."
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:63
+msgid "Find a classroom QR code"
+msgstr "Find a classroom QR code"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:73
+msgid "Explore tools"
+msgstr "Explore tools"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:84
+msgid "A community project, unaffiliated with the university."
+msgstr "A community project, unaffiliated with the university."
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:104
+msgid "Find a classroom or share a new QR code."
+msgstr "Find a classroom or share a new QR code."
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:113
+#: app/[locale]/page.tsx:221
+msgid "Find a classroom"
+msgstr "Find a classroom"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:116
+msgid "Enter a building, room name or room number."
+msgstr "Enter a building, room name or room number."
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:124
+#: app/[locale]/page.tsx:247
+msgid "Share a QR code"
+msgstr "Share a QR code"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:127
+msgid "Missing a classroom? Choose a photo to share its QR code."
+msgstr "Missing a classroom? Choose a photo to share its QR code."
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:135
+msgid "Check before use"
+msgstr "Check before use"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:138
+msgid "Check the classroom details and follow university requirements."
+msgstr "Check the classroom details and follow university requirements."
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:157
+msgid "Project on GitHub"
+msgstr "Project on GitHub"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:192
+msgid "Available"
+msgstr "Available"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:201
+msgid "Find a classroom and open its QR code."
+msgstr "Find a classroom and open its QR code."
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:209
+msgid "Follow university requirements when checking in."
+msgstr "Follow university requirements when checking in."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:136
+#: app/[locale]/code/page.tsx:128
+#: app/[locale]/page.tsx:235
+msgid "Share a classroom QR code"
+msgstr "Share a classroom QR code"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:239
+msgid "Take a photo of the QR code and add the classroom details."
+msgstr "Take a photo of the QR code and add the classroom details."
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:271
+msgid "About LSKit"
+msgstr "About LSKit"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:274
+msgid "Campus tools for students in Leeds."
+msgstr "Campus tools for students in Leeds."
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:280
+msgid "Feedback and suggestions"
+msgstr "Feedback and suggestions"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:283
+msgid "Found a mistake or have a suggestion? Let us know."
+msgstr "Found a mistake or have a suggestion? Let us know."
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:297
+msgid "Visit GitHub"
+msgstr "Visit GitHub"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:305
+msgid "Before you use LSKit"
+msgstr "Before you use LSKit"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:308
+msgid "LSKit is unaffiliated with the university. Refer to university guidance for course and attendance requirements."
+msgstr "LSKit is unaffiliated with the university. Refer to university guidance for course and attendance requirements."
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:323
+msgid "Found incorrect information?"
+msgstr "Found incorrect information?"
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:327
+msgid "Let us know and help improve it."
+msgstr "Let us know and help improve it."
+
+#. js-lingui-explicit-id
+#: app/[locale]/page.tsx:342
+msgid "Report a problem"
+msgstr "Report a problem"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:396
+#: app/[locale]/code/page.tsx:54
+#: app/[locale]/code/page.tsx:59
+#: app/[locale]/code/page.tsx:84
+msgid "Classroom"
+msgstr "Classroom"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:73
+msgid "View QR code"
+msgstr "View QR code"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:93
+msgid "{building} {number} classroom QR code"
+msgstr "{building} {number} classroom QR code"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:123
+msgid "Select a classroom to view its QR code."
+msgstr "Select a classroom to view its QR code."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:134
+#: app/[locale]/code/page.tsx:196
+msgid "Search by building, room name or number"
+msgstr "Search by building, room name or number"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:144
+msgid "Buildings ({count})"
+msgstr "Buildings ({count})"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:147
+msgid "All buildings"
+msgstr "All buildings"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:156
+msgid "Select buildings"
+msgstr "Select buildings"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:183
+msgid "Clear filters"
+msgstr "Clear filters"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:209
+msgid "Could not refresh. Showing previously loaded classrooms."
+msgstr "Could not refresh. Showing previously loaded classrooms."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:205
+#: app/[locale]/code/page.tsx:215
+msgid "Retry"
+msgstr "Retry"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:221
+msgid "Loading classrooms…"
+msgstr "Loading classrooms…"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:223
+msgid "No classroom QR codes yet."
+msgstr "No classroom QR codes yet."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:224
+msgid "{count, plural, one {# classroom} other {# classrooms}}"
+msgstr "{count, plural, one {# classroom} other {# classrooms}}"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/page.tsx:232
+msgid "No classrooms found. Try another search or clear the filters."
+msgstr "No classrooms found. Try another search or clear the filters."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:93
+msgid "Could not read this photo. Please try again."
+msgstr "Could not read this photo. Please try again."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:120
+msgid "Could not prepare your submission. Check the classroom details."
+msgstr "Could not prepare your submission. Check the classroom details."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:131
+msgid "Back to classrooms"
+msgstr "Back to classrooms"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:139
+msgid "Enter the classroom details, choose a photo and check the QR code."
+msgstr "Enter the classroom details, choose a photo and check the QR code."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:149
+msgid "Classroom details"
+msgstr "Classroom details"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:152
+msgid "Select a building or enter a new name."
+msgstr "Select a building or enter a new name."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:160
+#: app/[locale]/code/new/page.tsx:518
+msgid "Building"
+msgstr "Building"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:173
+msgid "Select or enter a building name"
+msgstr "Select or enter a building name"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:179
+msgid "Use the new name you entered."
+msgstr "Use the new name you entered."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:197
+msgid "Building list unavailable. You can enter a name."
+msgstr "Building list unavailable. You can enter a name."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:212
+#: app/[locale]/code/new/page.tsx:526
+msgid "Room name"
+msgstr "Room name"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:223
+msgid "Copy the room name from the photo"
+msgstr "Copy the room name from the photo"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:231
+msgid "Copy the text exactly as shown in the photo, excluding the room number. Do not abbreviate or translate it."
+msgstr "Copy the text exactly as shown in the photo, excluding the room number. Do not abbreviate or translate it."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:238
+#: app/[locale]/code/new/page.tsx:534
+msgid "Room number"
+msgstr "Room number"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:246
+msgid "For example, G.06 or 7M.02"
+msgstr "For example, G.06 or 7M.02"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:256
+msgid "QR code photo"
+msgstr "QR code photo"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:259
+msgid "Your photo stays on your device."
+msgstr "Your photo stays on your device."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:269
+msgid "Choose a QR code photo"
+msgstr "Choose a QR code photo"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:327
+msgid "Drop your photo here"
+msgstr "Drop your photo here"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:329
+msgid "Drop or click to replace your photo"
+msgstr "Drop or click to replace your photo"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:332
+msgid "Drop a QR code photo here or click to choose"
+msgstr "Drop a QR code photo here or click to choose"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:357
+#: app/[locale]/code/new/page.tsx:428
+msgid "Reading QR code…"
+msgstr "Reading QR code…"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:360
+msgid "Photo selected"
+msgstr "Photo selected"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:372
+msgid "PNG, JPG or WebP, up to 20 MB. Include the entire QR code clearly."
+msgstr "PNG, JPG or WebP, up to 20 MB. Include the entire QR code clearly."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:391
+#: app/[locale]/code/new/page.tsx:419
+msgid "QR code preview"
+msgstr "QR code preview"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:413
+msgid "QR code restored. Please check it."
+msgstr "QR code restored. Please check it."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:429
+msgid "Choose or drop a photo to read its QR code automatically."
+msgstr "Choose or drop a photo to read its QR code automatically."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:436
+msgid "A GitHub account is required to submit"
+msgstr "A GitHub account is required to submit"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:441
+msgid "By submitting, you agree to the "
+msgstr "By submitting, you agree to the "
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:448
+#: app/[locale]/code/new/page.tsx:458
+msgid "classroom QR code sharing terms"
+msgstr "classroom QR code sharing terms"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:463
+msgid "Classroom details, the QR code and your GitHub account will be public. Your photo will not be uploaded. Do not submit personal information, private credentials or QR codes you may not share publicly."
+msgstr "Classroom details, the QR code and your GitHub account will be public. Your photo will not be uploaded. Do not submit personal information, private credentials or QR codes you may not share publicly."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:468
+msgid "By submitting, you confirm you may share this information publicly and have checked the room name, number and QR code. Follow university rules and take responsibility for your submission."
+msgstr "By submitting, you confirm you may share this information publicly and have checked the room name, number and QR code. Follow university rules and take responsibility for your submission."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:473
+msgid "LSKit is unaffiliated with the university and does not guarantee QR codes are correct or remain valid. Please verify them yourself. Do not impersonate others, check in for someone else or violate university rules. To the extent permitted by law, the project is not liable for losses caused by incorrect or expired information or misuse. This does not exclude liability that cannot legally be excluded."
+msgstr "LSKit is unaffiliated with the university and does not guarantee QR codes are correct or remain valid. Please verify them yourself. Do not impersonate others, check in for someone else or violate university rules. To the extent permitted by law, the project is not liable for losses caused by incorrect or expired information or misuse. This does not exclude liability that cannot legally be excluded."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:487
+msgid "Submit classroom"
+msgstr "Submit classroom"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:506
+msgid "Are these details correct?"
+msgstr "Are these details correct?"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:509
+msgid "Please check the building, room name and room number."
+msgstr "Please check the building, room name and room number."
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:548
+msgid "Something is wrong — edit details"
+msgstr "Something is wrong — edit details"
+
+#. js-lingui-explicit-id
+#: app/[locale]/code/new/page.tsx:557
+msgid "Everything is correct — continue to GitHub"
+msgstr "Everything is correct — continue to GitHub"
