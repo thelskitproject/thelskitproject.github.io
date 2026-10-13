@@ -45,11 +45,5 @@
         "qrcode": "^1.5.4",
         "tailwindcss": "^4",
         "typescript": "^5"
-    },
-    "pnpm": {
-        "overrides": {
-            "@types/react": "19.3.0",
-            "@types/react-dom": "19.3.0"
-        }
     }
 }
