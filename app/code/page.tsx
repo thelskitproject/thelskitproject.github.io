@@ -46,13 +46,13 @@ function CodeCard({ entry }: { entry: CheckinCode }) {
                         <DialogTrigger asChild>
                             <Button
                                 variant="ghost"
-                                className="h-auto min-h-20 w-full flex-col items-stretch gap-2 whitespace-normal rounded-xl p-3 text-left"
+                                className="h-24 w-full flex-col items-stretch justify-between gap-2 whitespace-normal rounded-xl p-3 text-left"
                                 title={formatRoomName(
                                     entry.roomName,
                                     entry.roomNumber,
                                 )}
                             >
-                                <span className="line-clamp-2 text-sm font-semibold">
+                                <span className="line-clamp-2 h-10 shrink-0 text-sm leading-5 font-semibold">
                                     {entry.roomName || "教室"}
                                 </span>
                                 <span className="flex w-full items-center justify-between gap-2">
